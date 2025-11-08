@@ -50,9 +50,7 @@ alabaster-mono, alabaster-dark-mono. Defaults to `alabaster-theme'."
                                   '(alabaster alabaster-bg alabaster-dark
                                            alabaster-mono alabaster-dark-mono)
                                   nil t))))
-  (require (intern (format "alabaster%s"
-                          (if (eq variant 'alabaster) ""
-                            (concat "-" (symbol-name variant))))))
+  (require variant)
   (load-theme variant t))
 
 ;;;###autoload
