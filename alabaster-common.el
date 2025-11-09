@@ -9,7 +9,7 @@
 (deftheme alabaster-common "Shared Alabaster color palette")
 
 ;; Main Alabaster palette (exact Sublime colors)
-(defcustom alabaster-active "#007ACC" "Cursor and highlights color" :type 'string :group 'alabaster)
+(defcustom alabaster-active "#007acc" "Cursor and highlights color" :type 'string :group 'alabaster)
 (defcustom alabaster-selection "#BFDBFE" "Selection background" :type 'string :group 'alabaster)
 (defcustom alabaster-blue "#325CC0" "Definitions color" :type 'string :group 'alabaster)
 (defcustom alabaster-green "#448C27" "Strings color" :type 'string :group 'alabaster)

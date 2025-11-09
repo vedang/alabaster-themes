@@ -6,9 +6,13 @@
 
 ;;; Code:
 
-(require 'alabaster-common)
+(eval-and-compile
+  (require 'alabaster-common))
 
-(deftheme alabaster-dark "Alabaster dark theme")
+(deftheme alabaster-dark "Alabaster dark theme"
+          :background-mode 'dark
+          :kind 'color-scheme
+          :family 'alabaster)
 
 (custom-theme-set-variables
  'alabaster-dark
