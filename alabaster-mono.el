@@ -12,8 +12,7 @@
 
 (custom-theme-set-variables
  'alabaster-mono
- '(cursor-color alabaster-active)
- '(fringe-mode alabaster-light-line-highlight))
+ '(cursor-color alabaster-active))
 
 (custom-theme-set-faces
  'alabaster-mono

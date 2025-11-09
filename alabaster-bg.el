@@ -12,8 +12,7 @@
 
 (custom-theme-set-variables
  'alabaster-bg
- '(cursor-color alabaster-active)
- '(fringe-mode alabaster-transparent-black))
+ '(cursor-color alabaster-active))
 
 (custom-theme-set-faces
  'alabaster-bg

@@ -12,8 +12,7 @@
 
 (custom-theme-set-variables
  'alabaster-dark-mono
- '(cursor-color alabaster-dark-active)
- '(fringe-mode alabaster-dark-line-highlight))
+ '(cursor-color alabaster-dark-active))
 
 (custom-theme-set-faces
  'alabaster-dark-mono
@@ -21,18 +20,18 @@
  `(default ((t (:foreground ,alabaster-dark-fg :background ,alabaster-dark-bg))))
  `(cursor ((t (:background ,alabaster-dark-active))))
  `(fringe ((t (:background ,alabaster-dark-line-highlight))))
- `(line-number ((t (:foreground "#666" :background ,alabaster-dark-line-highlight))))
+  `(line-number ((t (:foreground ,alabaster-dark-dim-grey :background ,alabaster-dark-line-highlight))))
  `(line-number-current-line ((t (:foreground ,alabaster-dark-fg :background ,alabaster-dark-line-highlight))))
  `(hl-line ((t (:background ,alabaster-dark-line-highlight))))
 
  ;; Selection and highlighting
  `(region ((t (:background ,alabaster-dark-line-highlight))))
- `(highlight ((t (:background ,alabaster-dark-active :foreground "#000"))))
- `(isearch ((t (:background ,alabaster-dark-active :foreground "#000"))))
- `(lazy-highlight ((t (:background ,alabaster-dark-active :foreground "#000"))))
+  `(highlight ((t (:background ,alabaster-dark-active :foreground ,alabaster-dark-highlight-text))))
+  `(isearch ((t (:background ,alabaster-dark-active :foreground ,alabaster-dark-highlight-text))))
+  `(lazy-highlight ((t (:background ,alabaster-dark-active :foreground ,alabaster-dark-highlight-text))))
 
  ;; Font lock faces - mostly monochrome
- `(font-lock-comment-face ((t (:foreground "#666"))))
+  `(font-lock-comment-face ((t (:foreground ,alabaster-dark-dim-grey))))
  `(font-lock-string-face ((t (:foreground ,alabaster-dark-fg))))
  `(font-lock-constant-face ((t (:foreground ,alabaster-dark-fg))))
  `(font-lock-number-face ((t (:foreground ,alabaster-dark-fg))))
@@ -44,12 +43,12 @@
  `(font-lock-punctuation-face ((t (:foreground ,alabaster-dark-fg))))
 
  ;; Error handling - only errors highlighted
- `(error ((t (:foreground "#ff6b6b" :background "#332020"))))
+  `(error ((t (:foreground ,alabaster-dark-error :background ,alabaster-dark-error-bg))))
  `(warning ((t (:foreground ,alabaster-dark-active))))
 
  ;; Mode line
  `(mode-line ((t (:foreground ,alabaster-dark-fg :background alabaster-dark-line-highlight :box nil))))
- `(mode-line-inactive ((t (:foreground "#666" :background alabaster-dark-line-highlight :box nil))))
+  `(mode-line-inactive ((t (:foreground ,alabaster-dark-dim-grey :background alabaster-dark-line-highlight :box nil))))
 
  ;; Git diff colors
  `(diff-added ((t (:foreground "hsl(100, 50%, 50%)"))))

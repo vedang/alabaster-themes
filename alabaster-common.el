@@ -55,6 +55,7 @@
 (defcustom alabaster-dark-definition-blue "#8AB1F0" "Dark theme definition blue color" :type 'string :group 'alabaster)
 (defcustom alabaster-dark-error "#ff6b6b" "Dark theme error color" :type 'string :group 'alabaster)
 (defcustom alabaster-dark-error-bg "#332020" "Dark theme error background color" :type 'string :group 'alabaster)
+(defcustom alabaster-dark-highlight-text "#000" "Dark theme text color for highlights" :type 'string :group 'alabaster)
 
 (provide 'alabaster-common)
 ;;; alabaster-common.el ends here
