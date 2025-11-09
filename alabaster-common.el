@@ -45,5 +45,16 @@
 (defcustom alabaster-dark-constant "#CC8BC9" "Dark theme constants" :type 'string :group 'alabaster)
 (defcustom alabaster-dark-selection "#293334" "Dark theme selection" :type 'string :group 'alabaster)
 
+;; Additional utility colors
+(defcustom alabaster-transparent-black "#00000010" "Very transparent black for backgrounds" :type 'string :group 'alabaster)
+(defcustom alabaster-semi-transparent-black "#00000090" "Semi-transparent black for dimmed text" :type 'string :group 'alabaster)
+(defcustom alabaster-semi-transparent-black-2 "#00000075" "Alternative semi-transparent black" :type 'string :group 'alabaster)
+(defcustom alabaster-bg-region "#B4D8FD" "BG variant region selection color" :type 'string :group 'alabaster)
+(defcustom alabaster-bg-error "#c33" "BG variant error color" :type 'string :group 'alabaster)
+(defcustom alabaster-dark-dim-grey "#666" "Dark theme dim grey color" :type 'string :group 'alabaster)
+(defcustom alabaster-dark-definition-blue "#8AB1F0" "Dark theme definition blue color" :type 'string :group 'alabaster)
+(defcustom alabaster-dark-error "#ff6b6b" "Dark theme error color" :type 'string :group 'alabaster)
+(defcustom alabaster-dark-error-bg "#332020" "Dark theme error background color" :type 'string :group 'alabaster)
+
 (provide 'alabaster-common)
 ;;; alabaster-common.el ends here
