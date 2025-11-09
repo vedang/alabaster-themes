@@ -21,7 +21,7 @@
  `(default ((t (:foreground ,alabaster-dark-fg :background ,alabaster-dark-bg))))
  `(cursor ((t (:background ,alabaster-dark-active))))
  `(fringe ((t (:background ,alabaster-dark-line-highlight))))
- `(line-number ((t (:foreground "#666" :background ,alabaster-dark-line-highlight))))
+ `(line-number ((t (:foreground ,alabaster-dark-dim-grey :background ,alabaster-dark-line-highlight))))
  `(line-number-current-line ((t (:foreground ,alabaster-dark-fg :background ,alabaster-dark-selection))))
  `(hl-line ((t (:background ,alabaster-dark-line-highlight))))
 
@@ -37,21 +37,21 @@
  `(font-lock-constant-face ((t (:foreground ,alabaster-dark-constant))))
  `(font-lock-number-face ((t (:foreground ,alabaster-dark-constant))))
  `(font-lock-keyword-face ((t (:foreground ,alabaster-dark-fg)))) ; Keywords not highlighted
- `(font-lock-function-name-face ((t (:foreground "#8AB1F0")))) ; Light blue for definitions
- `(font-lock-variable-name-face ((t (:foreground "#8AB1F0"))))
+ `(font-lock-function-name-face ((t (:foreground ,alabaster-dark-definition-blue)))) ; Light blue for definitions
+ `(font-lock-variable-name-face ((t (:foreground ,alabaster-dark-definition-blue))))
  `(font-lock-type-face ((t (:foreground ,alabaster-dark-fg)))) ; Types not highlighted
  `(font-lock-builtin-face ((t (:foreground ,alabaster-dark-fg)))) ; Builtins not highlighted
 
  ;; Punctuation
- `(font-lock-punctuation-face ((t (:foreground "#666"))))
+ `(font-lock-punctuation-face ((t (:foreground ,alabaster-dark-dim-grey))))
 
  ;; Error handling
- `(error ((t (:foreground "#ff6b6b" :background ,(concat "#ff6b6b" "33")))))
+ `(error ((t (:foreground ,alabaster-dark-error :background ,(concat alabaster-dark-error "33")))))
  `(warning ((t (:foreground ,alabaster-dark-active))))
 
  ;; Mode line
  `(mode-line ((t (:foreground ,alabaster-dark-fg :background alabaster-dark-line-highlight :box nil))))
- `(mode-line-inactive ((t (:foreground "#666" :background alabaster-dark-line-highlight :box nil))))
+ `(mode-line-inactive ((t (:foreground ,alabaster-dark-dim-grey :background alabaster-dark-line-highlight :box nil))))
 
  ;; Git diff colors
  `(diff-added ((t (:foreground "hsl(100, 50%, 50%)"))))

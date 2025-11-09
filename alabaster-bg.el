@@ -13,20 +13,20 @@
 (custom-theme-set-variables
  'alabaster-bg
  '(cursor-color alabaster-active)
- '(fringe-mode "#00000010"))
+ '(fringe-mode alabaster-transparent-black))
 
 (custom-theme-set-faces
  'alabaster-bg
  ;; Basic appearance
  `(default ((t (:foreground ,alabaster-bg-fg :background ,alabaster-bg-bg))))
  `(cursor ((t (:background ,alabaster-active))))
- `(fringe ((t (:background "#00000010"))))
- `(line-number ((t (:foreground "#00000090" :background "#00000010"))))
+ `(fringe ((t (:background ,alabaster-transparent-black))))
+ `(line-number ((t (:foreground ,alabaster-semi-transparent-black :background ,alabaster-transparent-black))))
  `(line-number-current-line ((t (:foreground ,alabaster-bg-fg :background ,alabaster-selection))))
- `(hl-line ((t (:background "#00000010"))))
+ `(hl-line ((t (:background ,alabaster-transparent-black))))
 
  ;; Selection and highlighting
- `(region ((t (:background "#B4D8FD"))))
+ `(region ((t (:background ,alabaster-bg-region))))
  `(highlight ((t (:background ,alabaster-orange :foreground "#000"))))
  `(isearch ((t (:background ,alabaster-orange :foreground "#000"))))
  `(lazy-highlight ((t (:background ,alabaster-orange :foreground "#000"))))
@@ -34,8 +34,8 @@
  ;; Font lock faces - using background colors
  `(font-lock-comment-face ((t (:foreground "#000" :background ,alabaster-bg-yellow))))
  `(font-lock-string-face ((t (:foreground "#000" :background ,alabaster-bg-green))))
- `(font-lock-constant-face ((t (:foreground "#7A3E9D")))) ; Constants use foreground as in original
- `(font-lock-number-face ((t (:foreground "#7A3E9D"))))
+ `(font-lock-constant-face ((t (:foreground ,alabaster-magenta)))) ; Constants use foreground as in original
+ `(font-lock-number-face ((t (:foreground ,alabaster-magenta))))
  `(font-lock-keyword-face ((t (:foreground "#000")))) ; Keywords not highlighted
  `(font-lock-function-name-face ((t (:foreground "#000" :background ,alabaster-bg-blue))))
  `(font-lock-variable-name-face ((t (:foreground "#000" :background ,alabaster-bg-blue))))
@@ -43,18 +43,18 @@
  `(font-lock-builtin-face ((t (:foreground "#000")))) ; Builtins not highlighted
 
  ;; Punctuation
- `(font-lock-punctuation-face ((t (:foreground "#00000090"))))
+ `(font-lock-punctuation-face ((t (:foreground ,alabaster-semi-transparent-black))))
 
  ;; Inner brackets (special handling for nested structure)
- `(font-lock-regexp-grouping-construct ((t (:foreground "#00000075"))))
+ `(font-lock-regexp-grouping-construct ((t (:foreground ,alabaster-semi-transparent-black-2))))
 
  ;; Error handling
- `(error ((t (:foreground "#c33" :background ,alabaster-bg-red))))
+ `(error ((t (:foreground ,alabaster-bg-error :background ,alabaster-bg-red))))
  `(warning ((t (:foreground ,alabaster-orange))))
 
  ;; Mode line
- `(mode-line ((t (:foreground "#000" :background "#00000010" :box nil))))
- `(mode-line-inactive ((t (:foreground "#00000090" :background "#00000010" :box nil))))
+ `(mode-line ((t (:foreground "#000" :background ,alabaster-transparent-black :box nil))))
+ `(mode-line-inactive ((t (:foreground ,alabaster-semi-transparent-black :background ,alabaster-transparent-black :box nil))))
 
  ;; Git diff colors
  `(diff-added ((t (:foreground "hsl(100, 50%, 50%)"))))
