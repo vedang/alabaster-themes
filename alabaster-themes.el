@@ -731,3 +731,32 @@ list given LIST-PRED, using DEFAULT as a fallback."
           :weight
           (or weight 'unspecified))))
 
+
+;;;; Font options
+
+(defcustom alabaster-themes-mixed-fonts nil
+  "Non-nil to enable inheritance from `fixed-pitch' in some faces.
+
+This is done to allow spacing-sensitive constructs, such as Org
+tables and code blocks, to remain monospaced when users opt for a
+proportionately spaced font as their default or when they use
+something like the command `variable-pitch-mode'."
+  :group 'alabaster-themes
+  :type 'boolean)
+
+(defcustom alabaster-themes-variable-pitch-ui nil
+  "Use proportional fonts (`variable-pitch') in UI elements.
+This includes the mode line, header line, tab bar, and tab line."
+  :group 'alabaster-themes
+  :type 'boolean)
+
+(defun alabaster-themes--fixed-pitch ()
+  "Conditional application of `fixed-pitch' inheritance."
+  (when alabaster-themes-mixed-fonts
+    (list :inherit 'fixed-pitch)))
+
+(defun alabaster-themes--variable-pitch-ui ()
+  "Conditional application of `variable-pitch' in the UI."
+  (when alabaster-themes-variable-pitch-ui
+    (list :inherit 'variable-pitch)))
+
