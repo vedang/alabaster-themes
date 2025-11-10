@@ -483,3 +483,91 @@ the list becomes the last.  Do not modify THEMES in the process."
           (alabaster-themes-load-theme candidate))
       (user-error "`%s' is not part of the Alabaster collection" candidate))))
 
+
+;;;; Preview a theme palette
+
+(defun alabaster-themes--list-colors-get-mappings (palette)
+  "Get the semantic palette entries in PALETTE.
+PALETTE is the value of a variable like `alabaster-palette'."
+  (seq-remove
+   (lambda (cell)
+     (stringp (cadr cell)))
+   palette))
+
+(defun alabaster-themes--list-colors-tabulated (theme &optional mappings)
+  "Return a data structure of THEME palette or MAPPINGS for tabulated list."
+  (let* ((current-palette (alabaster-themes--palette-value theme mappings))
+         (palette (if mappings
+                      (alabaster-themes--list-colors-get-mappings current-palette)
+                    current-palette)))
+    (mapcar (lambda (cell)
+              (pcase-let* ((`(,name ,value) cell)
+                           (name-string (format "%s" name))
+                           (value-string (format "%s" value))
+                           (value-string-padded (string-pad value-string 30))
+                           (color (alabaster-themes--retrieve-palette-value name current-palette)))
+                (list name
+                      (vector
+                       (if (and (symbolp value)
+                                (not (eq value 'unspecified)))
+                           "Yes"
+                         "")
+                       name-string
+                       (propertize value-string 'face `( :foreground ,color))
+                       (propertize value-string-padded 'face (list :background color
+                                                                   :foreground (if (string= color "unspecified")
+                                                                                   (readable-foreground-color (alabaster-themes--retrieve-palette-value 'bg-main current-palette))
+                                                                                 (readable-foreground-color color))))))))
+            palette)))
+
+(defvar alabaster-themes-current-preview nil)
+(defvar alabaster-themes-current-preview-show-mappings nil)
+
+(defun alabaster-themes--set-tabulated-entries ()
+  "Set the value of `tabulated-list-entries' with palette entries."
+  (setq-local tabulated-list-entries
+              (alabaster-themes--list-colors-tabulated alabaster-themes-current-preview alabaster-themes-current-preview-show-mappings)))
+
+;;;###autoload
+(defun alabaster-themes-list-colors (theme &optional mappings)
+  "Preview the palette of the Alabaster THEME of choice.
+With optional prefix argument for MAPPINGS preview only the semantic
+color mappings instead of the complete palette."
+  (interactive
+   (let ((prompt (if current-prefix-arg
+                     "Preview palette mappings of THEME: "
+                   "Preview palette of THEME: ")))
+     (list
+      (alabaster-themes--select-prompt prompt)
+      current-prefix-arg)))
+  (let ((buffer (get-buffer-create (format (if mappings "*%s-list-mappings*" "*%s-list-all*") theme))))
+    (with-current-buffer buffer
+      (let ((alabaster-themes-current-preview theme)
+            (alabaster-themes-current-preview-show-mappings mappings))
+        (alabaster-themes-preview-mode)))
+    (pop-to-buffer buffer)))
+
+(defalias 'alabaster-themes-preview-colors 'alabaster-themes-list-colors
+  "Alias for `alabaster-themes-list-colors'.")
+
+;;;###autoload
+(defun alabaster-themes-list-colors-current (&optional mappings)
+  "Like `alabaster-themes-list-colors' with optional MAPPINGS for the current theme."
+  (interactive "P")
+  (alabaster-themes-list-colors (alabaster-themes--current-theme) mappings))
+
+(defalias 'alabaster-themes-preview-colors-current 'alabaster-themes-list-colors-current
+  "Alias for `alabaster-themes-list-colors-current'.")
+
+(define-derived-mode alabaster-themes-preview-mode tabulated-list-mode "Alabaster palette"
+  "Major mode to display a Alabaster themes palette."
+  :interactive nil
+  (setq-local tabulated-list-format
+              [("Mapping?" 10 t)
+               ("Symbol name" 30 t)
+               ("As foreground" 30 t)
+               ("As background" 0 t)])
+  (alabaster-themes--set-tabulated-entries)
+  (tabulated-list-init-header)
+  (tabulated-list-print))
+
