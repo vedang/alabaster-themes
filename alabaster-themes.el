@@ -571,3 +571,163 @@ color mappings instead of the complete palette."
   (tabulated-list-init-header)
   (tabulated-list-print))
 
+
+;;;; Heading customization
+
+(defconst alabaster-themes-weights
+  '(thin ultralight extralight light semilight regular medium
+         semibold bold heavy extrabold ultrabold)
+  "List of font weights.")
+
+(defconst alabaster-themes--headings-choice
+  '(set :tag "Properties" :greedy t
+        (const :tag "Proportionately spaced font (variable-pitch)" variable-pitch)
+        (choice :tag "Font weight (must be supported by the typeface)"
+                (const :tag "Bold (default)" nil)
+                (const :tag "Thin" thin)
+                (const :tag "Ultra-light" ultralight)
+                (const :tag "Extra-light" extralight)
+                (const :tag "Light" light)
+                (const :tag "Semi-light" semilight)
+                (const :tag "Regular" regular)
+                (const :tag "Medium" medium)
+                (const :tag "Semi-bold" semibold)
+                (const :tag "Extra-bold" extrabold)
+                (const :tag "Ultra-bold" ultrabold))
+        (radio :tag "Height"
+               (float :tag "Floating point to adjust height by")
+               (cons :tag "Cons cell of `(height . FLOAT)'"
+                     (const :tag "The `height' key (constant)" height)
+                     (float :tag "Floating point"))))
+  "Refer to the doc string of `alabaster-themes-headings'.
+This is a helper variable intended for internal use.")
+
+(defcustom alabaster-themes-headings nil
+  "Heading styles with optional list of values per heading level.
+
+This is an alist that accepts a (KEY . LIST-OF-VALUES)
+combination.  The KEY is either a number, representing the
+heading's level (0-8) or t, which pertains to the fallback style.
+The named keys `agenda-date' and `agenda-structure' apply to the
+Org agenda.
+
+Level 0 is used for what counts as a document title or
+equivalent, such as the #+title construct we find in Org files.
+Levels 1-8 are regular headings.
+
+The LIST-OF-VALUES covers symbols that refer to properties, as
+described below.  Here is a complete sample with various
+stylistic combinations, followed by a presentation of all
+available properties:
+
+    (setq alabaster-themes-headings
+          (quote ((1 light variable-pitch 1.5)
+                  (2 regular 1.3)
+                  (3 1.1)
+                  (agenda-date 1.3)
+                  (agenda-structure variable-pitch light 1.8)
+                  (t variable-pitch))))
+
+By default (a nil value for this variable), all headings have a
+bold typographic weight, a font family that is the same as the
+`default' face (typically monospaced), and a height that is equal
+to the `default' face's height.
+
+- A `variable-pitch' property changes the font family of the
+  heading to that of the `variable-pitch' face (normally a
+  proportionately spaced typeface).
+
+- The symbol of a weight attribute adjusts the font of the
+  heading accordingly, such as `light', `semibold', etc.  Valid
+  symbols are defined in the variable `alabaster-themes-weights'.
+  The absence of a weight means that bold will be used by virtue
+  of inheriting the `bold' face.
+
+- A number, expressed as a floating point (e.g. 1.5), adjusts the
+  height of the heading to that many times the base font size.
+  The default height is the same as 1.0, though it need not be
+  explicitly stated.  Instead of a floating point, an acceptable
+  value can be in the form of a cons cell like (height . FLOAT)
+  or (height FLOAT), where FLOAT is the given number.
+
+Combinations of any of those properties are expressed as a list,
+like in these examples:
+
+    (semibold)
+    (variable-pitch semibold)
+    (variable-pitch semibold 1.3)
+    (variable-pitch semibold (height 1.3))   ; same as above
+    (variable-pitch semibold (height . 1.3)) ; same as above
+
+The order in which the properties are set is not significant.
+
+In user configuration files the form may look like this:
+
+    (setq alabaster-themes-headings
+          (quote ((1 light variable-pitch 1.5)
+                  (2 regular 1.3)
+                  (3 1.1)
+                  (t variable-pitch))))
+
+When defining the styles per heading level, it is possible to
+pass a non-nil non-list value (e.g. t) instead of a list of
+properties.  This will retain the original aesthetic for that
+level.  For example:
+
+    (setq alabaster-themes-headings
+          (quote ((1 . t)           ; keep the default style
+                  (2 variable-pitch 1.2)
+                  (t variable-pitch)))) ; style for all other headings
+
+    (setq alabaster-themes-headings
+          (quote ((1 variable-pitch 1.6)
+                  (2 1.3)
+                  (t . t)))) ; default style for all other levels"
+  :group 'alabaster-themes
+  :type `(alist
+          :options ,(mapcar (lambda (el)
+                              (list el alabaster-themes--headings-choice))
+                            '(0 1 2 3 4 5 6 7 8 t agenda-date agenda-structure))
+          :key-type symbol
+          :value-type ,alabaster-themes--headings-choice))
+
+(defun alabaster-themes--weight (list)
+  "Search for `alabaster-themes--heading' weight in LIST."
+  (catch 'found
+    (dolist (elt list)
+      (when (memq elt alabaster-themes-weights)
+        (throw 'found elt)))))
+
+(defun alabaster-themes--property-lookup (properties alist-key list-pred default)
+  "Return value from property alist or list.
+Check PROPERTIES for an alist value that corresponds to
+ALIST-KEY.  If no alist is present, search the PROPERTIES
+list given LIST-PRED, using DEFAULT as a fallback."
+  (if-let* ((val (or (alist-get alist-key properties)
+                     (seq-filter (lambda (x) (funcall list-pred x)) properties)
+                     default))
+            ((listp val)))
+      (car val)
+    val))
+
+(defun alabaster-themes--heading (level)
+  "Conditional styles for `alabaster-themes-headings' per LEVEL heading."
+  (let* ((key (alist-get level alabaster-themes-headings))
+         (style (or key (alist-get t alabaster-themes-headings)))
+         (style-listp (listp style))
+         (properties style)
+         (var (when (and style-listp (memq 'variable-pitch properties)) 'variable-pitch))
+         (weight (when style-listp (alabaster-themes--weight style))))
+    (list :inherit
+          (cond
+           ((not style-listp) 'bold)
+           (weight var)
+           (var (append (list 'bold) (list var)))
+           (t 'bold))
+          :height
+          (if style-listp
+              (alabaster-themes--property-lookup properties 'height #'floatp 'unspecified)
+            'unspecified)
+          :weight
+          (or weight 'unspecified))))
+
