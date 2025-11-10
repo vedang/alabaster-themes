@@ -242,3 +242,139 @@ This is populated by the individual theme files.")
 (provide 'alabaster-theme)
 ;;; alabaster-theme.el ends here
 (provide 'alabaster-themes)
+
+;;;; Theme selection commands
+
+(defun alabaster-themes--annotate-theme (theme)
+  "Return completion annotation for THEME."
+  (when-let* ((symbol (intern-soft theme))
+              (doc-string (get symbol 'theme-documentation)))
+    (format " -- %s"
+            (propertize
+             (car (split-string doc-string "\\."))
+             'face 'completions-annotations))))
+
+(defun alabaster-themes--completion-table (category candidates)
+  "Pass appropriate metadata CATEGORY to completion CANDIDATES."
+  (lambda (string pred action)
+    (if (eq action 'metadata)
+        `(metadata (category . ,category))
+      (complete-with-action action candidates string pred))))
+
+(defun alabaster-themes--load-subset (subset)
+  "Return the `light' or `dark' SUBSET of the Alabaster themes.
+If SUBSET is neither `light' nor `dark', return all the known Alabaster themes."
+  (alabaster-themes--completion-table 'theme (alabaster-themes--enable-themes subset)))
+
+(defun alabaster-themes--maybe-prompt-subset (variant)
+  "Helper function for `alabaster-themes--select-prompt' VARIANT argument."
+  (cond
+   ((null variant))
+   ((or (eq variant 'light) (eq variant 'dark)) variant)
+   (t (alabaster-themes--choose-subset))))
+
+(defun alabaster-themes--choose-subset ()
+  "Use `read-multiple-choice' to return `dark' or `light' variant."
+  (intern
+   (cadr
+    (read-multiple-choice
+     "Variant"
+     '((?d "dark" "Load a dark theme")
+       (?l "light" "Load a light theme"))
+     "Limit to the dark or light subset of the Alabaster themes collection."))))
+
+(defvar alabaster-themes--select-theme-history nil
+  "Minibuffer history of `alabaster-themes--select-prompt'.")
+
+(defun alabaster-themes--select-prompt (&optional prompt variant)
+  "Minibuffer prompt for `alabaster-themes-select'.
+With optional PROMPT string, use it.  Else use a generic prompt.
+
+With optional VARIANT as a non-nil value, prompt to limit the
+set of themes to either dark or light variants.  Then limit the
+completion candidates accordingly.
+
+If VARIANT is either `light' or `dark' then use it directly
+instead of prompting the user for a choice.
+
+When VARIANT is nil, all Alabaster themes are candidates for completion."
+  (let* ((subset (alabaster-themes--maybe-prompt-subset variant))
+         (themes (alabaster-themes--load-subset subset))
+         (completion-extra-properties `(:annotation-function ,#'alabaster-themes--annotate-theme)))
+    (intern
+     (completing-read
+      (or prompt "Select Alabaster Theme: ")
+      themes
+      nil t nil
+      'alabaster-themes--select-theme-history))))
+
+(defun alabaster-themes--disable-themes ()
+  "Disable themes per `alabaster-themes-disable-other-themes'."
+  (mapc #'disable-theme
+        (if alabaster-themes-disable-other-themes
+            custom-enabled-themes
+          (alabaster-themes--list-known-themes))))
+
+(defun alabaster-themes-load-theme (theme)
+  "Load THEME while disabling other Alabaster themes.
+Which themes are disabled is determined by the user option
+`alabaster-themes-disable-other-themes'.
+
+Run the `alabaster-themes-post-load-hook' as the final step after
+loading the THEME.
+
+Return THEME."
+  (alabaster-themes--disable-themes)
+  (load-theme theme :no-confirm)
+  (run-hooks 'alabaster-themes-post-load-hook)
+  theme)
+
+;;;; Select a theme using minibuffer completion
+
+;;;###autoload
+(defun alabaster-themes-select (theme &optional _variant)
+  "Load an Alabaster THEME using minibuffer completion.
+
+With optional VARIANT as a prefix argument, prompt to limit the
+set of themes to either dark or light variants.
+
+Run `alabaster-themes-post-load-hook' after loading the theme.
+
+When called from Lisp, THEME is the symbol of a theme.  VARIANT
+is ignored in this scenario."
+  (interactive (list (alabaster-themes--select-prompt nil current-prefix-arg)))
+  (alabaster-themes-load-theme theme))
+
+;;;###autoload
+(defun alabaster-themes-select-light (theme)
+  "Load a light Alabaster THEME.
+Run `alabaster-themes-post-load-hook' after loading the theme.
+
+Also see `alabaster-themes-select-dark'.
+
+This command is the same as `alabaster-themes-select' except it only
+prompts for light themes when called interactively.  Calling it
+from Lisp behaves the same as `alabaster-themes-select' for the THEME
+argument, meaning that it loads the Alabaster THEME regardless of
+whether it is light or dark."
+  (interactive
+   (list
+    (alabaster-themes--select-prompt "Select light Alabaster theme: " 'light)))
+  (alabaster-themes-load-theme theme))
+
+;;;###autoload
+(defun alabaster-themes-select-dark (theme)
+  "Load a dark Alabaster THEME.
+Run `alabaster-themes-post-load-hook' after loading the theme.
+
+Also see `alabaster-themes-select-light'.
+
+This command is the same as `alabaster-themes-select' except it only
+prompts for dark themes when called interactively.  Calling it
+from Lisp behaves the same as `alabaster-themes-select' for the THEME
+argument, meaning that it loads the Alabaster THEME regardless of
+whether it is light or dark."
+  (interactive
+   (list
+    (alabaster-themes--select-prompt "Select dark Alabaster theme: " 'dark)))
+  (alabaster-themes-load-theme theme))
