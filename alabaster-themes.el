@@ -378,3 +378,108 @@ whether it is light or dark."
    (list
     (alabaster-themes--select-prompt "Select dark Alabaster theme: " 'dark)))
   (alabaster-themes-load-theme theme))
+
+;;;; Theme management commands
+
+(defun alabaster-themes--toggle-theme-p ()
+  "Return non-nil if `alabaster-themes-to-toggle' are valid."
+  (condition-case nil
+      (dolist (theme alabaster-themes-to-toggle)
+        (or (memq theme alabaster-themes-collection)
+            (memq theme (alabaster-themes--list-known-themes))
+            (error "`%s' is not part of `alabaster-themes-collection'" theme)))
+    (error nil)
+    (:success alabaster-themes-to-toggle)))
+
+;;;###autoload
+(defun alabaster-themes-toggle ()
+  "Toggle between the two `alabaster-themes-to-toggle'.
+If `alabaster-themes-to-toggle' does not specify two Alabaster themes, inform
+the user about it while prompting with completion for a theme
+among our collection (this is practically the same as the
+`alabaster-themes-select' command).
+
+Run `alabaster-themes-post-load-hook' after loading the theme."
+  (interactive)
+  (if-let* ((themes (alabaster-themes--toggle-theme-p))
+            (one (car themes))
+            (two (cadr themes)))
+      (if (eq (car custom-enabled-themes) one)
+          (alabaster-themes-load-theme two)
+        (alabaster-themes-load-theme one))
+    (alabaster-themes-load-theme
+     (alabaster-themes--select-prompt
+      (concat "Set two `alabaster-themes-to-toggle'; "
+              "switching to theme selection for now: ")))))
+
+;;;; Load a theme at random
+
+(defun alabaster-themes--minus-current (&optional variant)
+  "Return list of Alabaster themes minus the current one.
+VARIANT is either `light' or `dark', which stand for
+`alabaster-themes-light-themes' and `alabaster-themes-dark-themes',
+respectively.  Else check against the return value of
+`alabaster-themes--list-known-themes'."
+  (let* ((list (when variant
+                 (if (eq variant 'dark)
+                     alabaster-themes-dark-themes
+                   alabaster-themes-light-themes)))
+         (sequence (or list (alabaster-themes--list-known-themes)))
+         (themes (copy-sequence sequence)))
+    (delete (alabaster-themes--current-theme) themes)))
+
+;;;###autoload
+(defun alabaster-themes-load-random (&optional variant)
+  "Load an Alabaster theme at random, excluding the current one.
+
+With optional VARIANT as a prefix argument, prompt to limit the
+set of themes to either dark or light variants.
+
+Run `alabaster-themes-post-load-hook' after loading the theme.
+
+When called from Lisp, VARIANT is either the `dark' or `light'
+symbol."
+  (interactive (list (when current-prefix-arg (alabaster-themes--choose-subset))))
+  (let* ((themes (alabaster-themes--minus-current variant))
+         (n (random (length themes)))
+         (pick (nth n themes))
+         (loaded (if (null pick) (car themes) pick)))
+    (alabaster-themes-load-theme loaded)
+    (message "Loaded `%s'" loaded)))
+
+;;;; Rotate through a list of themes
+
+(defun alabaster-themes--rotate (themes)
+  "Rotate THEMES rightward such that the car is moved to the end."
+  (if (proper-list-p themes)
+      (let* ((index (seq-position themes (alabaster-themes--current-theme)))
+             (offset (1+ index)))
+        (append (nthcdr offset themes) (take offset themes)))
+    (error "The `%s' is not a list" themes)))
+
+(defun alabaster-themes--rotate-p (themes)
+  "Return a new theme among THEMES if it is possible to rotate to it."
+  (if-let* ((new-theme (car (alabaster-themes--rotate themes))))
+      (if (eq new-theme (alabaster-themes--current-theme))
+          (car (alabaster-themes--rotate-p (alabaster-themes--rotate themes)))
+        new-theme)
+    (error "Cannot determine a theme among `%s'" themes)))
+
+;;;###autoload
+(defun alabaster-themes-rotate (themes)
+  "Rotate to the next theme among THEMES.
+When called interactively THEMES is the value of `alabaster-themes-to-rotate'.
+
+If the current theme is already the next in line, then move to the one
+after.  Perform the rotation rightwards, such that the first element in
+the list becomes the last.  Do not modify THEMES in the process."
+  (interactive (list alabaster-themes-to-rotate))
+  (unless (proper-list-p themes)
+    "This is not a list of themes: `%s'" themes)
+  (let ((candidate (alabaster-themes--rotate-p themes)))
+    (if (memq candidate alabaster-themes-collection)
+        (progn
+          (message "Rotating to `%s'" (propertize (symbol-name candidate) 'face 'success))
+          (alabaster-themes-load-theme candidate))
+      (user-error "`%s' is not part of the Alabaster collection" candidate))))
+
