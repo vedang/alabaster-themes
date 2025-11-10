@@ -1,4 +1,4 @@
-;;; alabaster-mono.el --- Alabaster mono light theme -*- lexical-binding:t -*-
+;;; alabaster-mono-theme.el --- Alabaster mono light theme -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Your Name
 
@@ -34,10 +34,6 @@
 
 ;;; Code:
 
-(eval-and-compile
-  (require 'alabaster-themes)
-  (require 'alabaster-common))
-
 ;;;###theme-autoload
 (deftheme alabaster-mono
   "Minimal light theme with monochromatic highlighting."
@@ -45,7 +41,130 @@
   :kind 'color-scheme
   :family 'alabaster)
 
+(defconst alabaster-mono-palette
+  '(
+;;; Basic values
+
+    (bg-main     "#F7F7F7")
+    (fg-main     "#000000")
+    (bg-dim      "#f0f0f0")
+    (fg-dim      "#777777")
+    (bg-alt      "#ffffff")
+    (fg-alt      "#333333")
+
+    (bg-active   "#e0e0e0")
+    (bg-inactive "#f5f5f5")
+
+;;; Basic hues (mostly monochrome)
+
+    (red             "#AA3731")
+    (green           "#000000")
+    (yellow          "#FFBC5D")
+    (blue            "#000000")
+    (magenta         "#000000")
+
+;;; Background hues
+
+    (bg-red-subtle      "#FFE0E0")
+    (bg-green-subtle    "#f0f0f0")
+    (bg-yellow-subtle   "#f0f0f0")
+    (bg-blue-subtle     "#f0f0f0")
+    (bg-magenta-subtle  "#f0f0f0")
+
+;;; Diffs
+
+    (bg-added          "#d4f6d4")
+    (bg-added-faint    "#e8fae8")
+    (bg-added-refine   "#b8e6b8")
+    (fg-added          "#005000")
+
+    (bg-changed        "#ffe5b9")
+    (bg-changed-faint  "#ffefc5")
+    (bg-changed-refine "#ffd09f")
+    (fg-changed        "#553d00")
+
+    (bg-removed        "#ffd4d8")
+    (bg-removed-faint  "#ffe3e3")
+    (bg-removed-refine "#ffc0ca")
+    (fg-removed        "#8f1313")
+
+;;; Special hues
+
+    (bg-mode-line       "#e0e0e0")
+    (fg-mode-line       "#000000")
+    (bg-completion      "#f0f0f0")
+    (bg-hover           "#f0f0f0")
+    (bg-hl-line         "#f0f0f0")
+    (bg-region          "#f0f0f0")
+    (bg-err             "#FFE0E0")
+    (bg-warning         "#f0f0f0")
+    (bg-info            "#f0f0f0")
+
+    (border        "#cccccc")
+    (cursor        "#007acc")
+    (fg-intense    "#000000")
+
+    (modeline-err     "#AA3731")
+    (modeline-warning "#777777")
+    (modeline-info    "#777777")
+
+    (underline-err     "#AA3731")
+    (underline-warning "#777777")
+    (underline-info    "#777777")
+
+;;; Mappings
+
+;;;; General mappings
+
+    (err red)
+    (warning yellow)
+    (info fg-main)
+
+    (link fg-main)
+    (name fg-main)
+    (keybind red)
+    (identifier fg-main)
+    (prompt fg-main)
+
+    (builtin fg-main)
+    (comment fg-dim)
+    (constant fg-main)
+    (docstring fg-main)
+    (fnname fg-main)
+    (keyword fg-main)
+    (preprocessor fg-main)
+    (string fg-main)
+    (type fg-main)
+    (variable fg-main)
+
+    (bg-fringe unspecified)
+    (fg-fringe fg-dim)
+
+    (fg-term-black           "black")
+    (fg-term-red             red)
+    (fg-term-green           fg-main)
+    (fg-term-yellow          yellow)
+    (fg-term-blue            fg-main)
+    (fg-term-magenta         fg-main)
+    (fg-term-cyan            fg-main)
+    (fg-term-white           "gray65")
+
+    (bg-term-black           "black")
+    (bg-term-red             red)
+    (bg-term-green           bg-main)
+    (bg-term-yellow          bg-main)
+    (bg-term-blue            bg-main)
+    (bg-term-magenta         bg-main)
+    (bg-term-cyan            bg-main)
+    (bg-term-white           "gray65"))
+  "The `alabaster-mono' palette.")
+
+(defcustom alabaster-mono-palette-overrides nil
+  "Overrides for `alabaster-mono-palette'."
+  :group 'alabaster-themes
+  :type '(repeat (list symbol (choice symbol string))))
+
 (alabaster-themes-theme alabaster-mono alabaster-mono-palette alabaster-mono-palette-overrides)
 
 (provide-theme 'alabaster-mono)
-;;; alabaster-mono.el ends here
+;;; alabaster-mono-theme.el ends here

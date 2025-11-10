@@ -1,4 +1,4 @@
-;;; alabaster-dark-theme.el --- Alabaster dark theme -*- lexical-binding:t -*-
+;;; alabaster-theme.el --- Alabaster light theme -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Your Name
 
@@ -29,88 +29,88 @@
 
 ;;; Commentary:
 ;;
-;; The `alabaster-dark' theme is a minimal dark theme with foreground highlighting.
-;; It maintains the Alabaster design philosophy in a dark variant.
+;; The `alabaster' theme is a minimal light theme with foreground highlighting.
+;; It maintains exact color fidelity to the original Sublime Text Alabaster scheme.
 
 ;;; Code:
 
 ;;;###theme-autoload
-(deftheme alabaster-dark
-  "Minimal dark theme with foreground highlighting."
-  :background-mode 'dark
+(deftheme alabaster
+  "Minimal light theme with foreground highlighting."
+  :background-mode 'light
   :kind 'color-scheme
   :family 'alabaster)
 
-(defconst alabaster-dark-palette
+(defconst alabaster-palette
   '(
 ;;; Basic values
 
-    (bg-main     "#0E1415")
-    (fg-main     "#CECECE")
-    (bg-dim      "#1a1a1a")
-    (fg-dim      "#666666")
-    (bg-alt      "#1f2526")
-    (fg-alt      "#a0a0a0")
+    (bg-main     "#F7F7F7")
+    (fg-main     "#000000")
+    (bg-dim      "#f0f0f0")
+    (fg-dim      "#777777")
+    (bg-alt      "#ffffff")
+    (fg-alt      "#333333")
 
-    (bg-active   "#293334")
-    (bg-inactive "#121818")
+    (bg-active   "#e0e0e0")
+    (bg-inactive "#f5f5f5")
 
-;;; Basic hues (dark variants)
+;;; Basic hues
 
-    (red             "#DFDF8E")
-    (green           "#95CB82")
-    (yellow          "#CD974B")
-    (blue            "#8AB1F0")
-    (magenta         "#CC8BC9")
+    (red             "#AA3731")
+    (green           "#448C27")
+    (yellow          "#FFBC5D")
+    (blue            "#325CC0")
+    (magenta         "#7A3E9D")
 
 ;;; Background hues
 
-    (bg-red-subtle      "#332020")
-    (bg-green-subtle    "#1f2a1f")
-    (bg-yellow-subtle   "#332a20")
-    (bg-blue-subtle     "#202633")
-    (bg-magenta-subtle  "#2f2030")
+    (bg-red-subtle      "#FFE0E0")
+    (bg-green-subtle    "#F1FADF")
+    (bg-yellow-subtle   "#FFFABC")
+    (bg-blue-subtle     "#DBF1FF")
+    (bg-magenta-subtle  "#F9E0FF")
 
 ;;; Diffs
 
-    (bg-added          "#1f3a1f")
-    (bg-added-faint    "#2a4a2a")
-    (bg-added-refine   "#0f2f0f")
-    (fg-added          "#95CB82")
+    (bg-added          "#d4f6d4")
+    (bg-added-faint    "#e8fae8")
+    (bg-added-refine   "#b8e6b8")
+    (fg-added          "#005000")
 
-    (bg-changed        "#3a2f1f")
-    (bg-changed-faint  "#4a3f2a")
-    (bg-changed-refine "#2f2f0f")
-    (fg-changed        "#CD974B")
+    (bg-changed        "#ffe5b9")
+    (bg-changed-faint  "#ffefc5")
+    (bg-changed-refine "#ffd09f")
+    (fg-changed        "#553d00")
 
-    (bg-removed        "#3a1f1f")
-    (bg-removed-faint  "#4a2a2a")
-    (bg-removed-refine "#2f0f0f")
-    (fg-removed        "#ff6b6b")
+    (bg-removed        "#ffd4d8")
+    (bg-removed-faint  "#ffe3e3")
+    (bg-removed-refine "#ffc0ca")
+    (fg-removed        "#8f1313")
 
 ;;; Special hues
 
-    (bg-mode-line       "#293334")
-    (fg-mode-line       "#CECECE")
-    (bg-completion      "#202633")
-    (bg-hover           "#293334")
-    (bg-hl-line         "#1a1a1a")
-    (bg-region          "#293334")
-    (bg-err             "#332020")
-    (bg-warning         "#332a20")
-    (bg-info            "#1f2a1f")
+    (bg-mode-line       "#e0e0e0")
+    (fg-mode-line       "#000000")
+    (bg-completion      "#DBF1FF")
+    (bg-hover           "#BFDBFE")
+    (bg-hl-line         "#f0f0f0")
+    (bg-region          "#BFDBFE")
+    (bg-err             "#FFE0E0")
+    (bg-warning         "#FFFABC")
+    (bg-info            "#F1FADF")
 
-    (border        "#444444")
-    (cursor        "#CD974B")
-    (fg-intense    "#ffffff")
+    (border        "#cccccc")
+    (cursor        "#007acc")
+    (fg-intense    "#000000")
 
-    (modeline-err     "#ff6b6b")
-    (modeline-warning "#CD974B")
-    (modeline-info    "#8AB1F0")
+    (modeline-err     "#AA3731")
+    (modeline-warning "#FFBC5D")
+    (modeline-info    "#325CC0")
 
-    (underline-err     "#ff6b6b")
-    (underline-warning "#CD974B")
-    (underline-info    "#8AB1F0")
+    (underline-err     "#AA3731")
+    (underline-warning "#FFBC5D")
+    (underline-info    "#325CC0")
 
 ;;; Mappings
 
@@ -157,14 +157,14 @@
     (bg-term-magenta         magenta)
     (bg-term-cyan            blue)
     (bg-term-white           "gray65"))
-  "The `alabaster-dark' palette.")
+  "The `alabaster' palette.")
 
-(defcustom alabaster-dark-palette-overrides nil
-  "Overrides for `alabaster-dark-palette'."
+(defcustom alabaster-palette-overrides nil
+  "Overrides for `alabaster-palette'."
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
-(alabaster-themes-theme alabaster-dark alabaster-dark-palette alabaster-dark-palette-overrides)
+(alabaster-themes-theme alabaster alabaster-palette alabaster-palette-overrides)
 
-(provide-theme 'alabaster-dark)
-;;; alabaster-dark-theme.el ends here
+(provide-theme 'alabaster)
+;;; alabaster-theme.el ends here
