@@ -33,7 +33,7 @@
 
 ;;; Code:
 
-(require 'alabaster-theme)
+(require 'alabaster-themes)
 
 ;;; Base color constants (exact Sublime Text Alabaster colors)
 
