@@ -1,0 +1,145 @@
+#+TITLE: Changelog for Alabaster Themes
+#+AUTHOR: Niki Tonsky
+
+* Version 1.0.0 (2025-11-11)
+
+** Major Refactoring
+
+This release represents a complete rewrite of the alabaster-emacs package to align with modern Emacs theme best practices, inspired by the ef-themes framework.
+
+** New Features
+
+*** Theme Framework
+- Implemented ~alabaster-themes-theme~ macro for consistent theme structure
+- Added semantic palette system with color mappings and overrides
+- Centralized all face definitions in ~alabaster-themes.el~
+- Themes are now data (palette + optional overrides)
+
+*** User Commands
+- ~alabaster-themes-select~ - Interactive theme selection with annotations
+- ~alabaster-themes-select-light~ - Select from light themes only
+- ~alabaster-themes-select-dark~ - Select from dark themes only
+- ~alabaster-themes-toggle~ - Toggle between two themes
+- ~alabaster-themes-load-random~ - Load random theme
+- ~alabaster-themes-rotate~ - Rotate through custom list
+- ~alabaster-themes-list-colors~ - Preview palette in tabulated list
+- ~alabaster-themes-list-colors-current~ - Preview current theme palette
+
+*** Customization Options
+- ~alabaster-themes-headings~ - Per-level heading styles with variable-pitch, weights, heights
+- ~alabaster-themes-mixed-fonts~ - Monospace-sensitive constructs
+- ~alabaster-themes-variable-pitch-ui~ - Proportional fonts in UI
+- ~alabaster-themes-common-palette-overrides~ - Global palette overrides
+- Per-theme ~*-palette-overrides~ - Individual theme overrides
+- Font weight system (thin to ultrabold)
+
+*** Expanded Face Coverage
+- 500+ face definitions (was ~40)
+- Comprehensive package support:
+  - Version Control: Magit, diff-hl, git-gutter
+  - Completion: Company, Corfu, Vertico, Orderless, Consult, Embark, Marginalia
+  - Navigation: Avy, Which-key
+  - Programming: Flycheck, Flymake, Eglot, LSP Mode
+  - Documentation: Org, Elfeed, EWW, Info, Man
+  - Mail: Message, Gnus
+  - Editing: Yasnippet, Smartparens, Show-paren, Rainbow-delimiters
+  - UI: All-the-icons, Custom
+  - Dired: Dired, Diredfl, Image-dired
+
+*** Helper Faces
+- ~alabaster-themes-heading-0~ through ~alabaster-themes-heading-8~
+- ~alabaster-themes-mark-delete~, ~alabaster-themes-mark-select~, ~alabaster-themes-mark-other~
+- ~alabaster-themes-search-current~, ~alabaster-themes-search-lazy~, ~alabaster-themes-search-replace~
+- ~alabaster-themes-search-rx-group-0~ through ~alabaster-themes-search-rx-group-3~
+- ~alabaster-themes-search-match~
+- ~alabaster-themes-underline-error~, ~alabaster-themes-underline-info~, ~alabaster-themes-underline-warning~
+
+*** Documentation
+- Converted README to comprehensive Org mode format
+- Added detailed customization examples
+- Created command and variable index
+- Added troubleshooting section
+
+** Breaking Changes
+
+*** API Changes
+- ~alabaster-load-theme~ replaced by ~alabaster-themes-load-theme~
+- ~alabaster-switch-theme~ replaced by ~alabaster-themes-rotate~
+- Color variables changed from ~defcustom~ to ~defconst~
+- Theme files now use ~alabaster-themes-theme~ macro instead of direct ~deftheme~
+
+*** Customization Changes
+- ~alabaster-green~, ~alabaster-blue~, etc. are now constants (use palette overrides)
+- ~alabaster-theme~ variable removed (use theme selection commands)
+- ~alabaster-theme-variants~ removed (use ~alabaster-themes-collection~)
+
+** Migration Guide
+
+*** Old way (pre-1.0)
+#+begin_src emacs-lisp
+;; Setting theme
+(setq alabaster-theme 'alabaster-dark)
+(alabaster-load-theme alabaster-theme)
+
+;; Customizing colors
+(setq alabaster-green "#00AA00")
+
+;; Cycling themes
+(alabaster-switch-theme)
+#+end_src
+
+*** New way (1.0+)
+#+begin_src emacs-lisp
+;; Setting theme
+(alabaster-themes-load-theme 'alabaster-dark)
+;; Or interactively
+(alabaster-themes-select)
+
+;; Customizing colors
+(setq alabaster-dark-palette-overrides
+      '((green . "#00AA00")))
+
+;; Cycling themes
+(alabaster-themes-rotate '(alabaster alabaster-dark alabaster-mono))
+#+end_src
+
+** Bug Fixes
+
+- Fixed palette color resolution for nested mappings
+- Fixed theme loading to properly disable conflicting themes
+- Fixed heading customization to work with all heading levels
+- Fixed search face inheritance
+
+** Internal Improvements
+
+- Added comprehensive test suite (Buttercup)
+- Added palette validation functions
+- Added face consistency checks
+- Improved macro expansion performance
+- Added proper GPL headers to all files
+- Added Package-Requires, Keywords, URL headers
+
+** Credits
+
+Refactoring inspired by [[https://github.com/protesilaos/ef-themes][Protesilaos Stavrou's ef-themes]].
+
+* Version 0.1.0 (2023-XX-XX)
+
+Initial release of alabaster-emacs package.
+
+** Features
+
+- 5 theme variants: alabaster, alabaster-bg, alabaster-dark, alabaster-mono, alabaster-dark-mono
+- Basic color definitions in ~alabaster-common.el~
+- Simple theme loading functions
+- ~40 face definitions per theme
+- Support for basic syntax highlighting
+- Customizable color variables
+
+** Limitations
+
+- No palette system
+- No customization framework
+- Limited package support
+- No user commands
+- Basic documentation

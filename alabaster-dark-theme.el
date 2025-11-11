@@ -1,9 +1,9 @@
 ;;; alabaster-dark-theme.el --- Alabaster dark theme -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Your Name
+;; Copyright (C) 2025  Niki Tonsky
 
-;; Author: Your Name <your.email@example.com>
-;; Maintainer: Your Name <your.email@example.com>
+;; Author: Niki Tonsky <nikki.me>
+;; Maintainer: Niki Tonsky <nikki.me>
 ;; URL: https://github.com/tonsky/sublime-scheme-alabaster
 ;; Version: 1.0.0
 ;; Package-Requires: ((emacs "28.1"))
@@ -111,6 +111,33 @@
     (underline-err     "#ff6b6b")
     (underline-warning "#CD974B")
     (underline-info    "#8AB1F0")
+
+    (fg-region             "#CECECE")
+    (link-alt              ,blue)
+    (bg-search-current     "#CD974B")
+    (bg-search-lazy        "#332a20")
+    (bg-search-replace     "#332020")
+    (bg-search-match       "#202633")
+    (bg-search-rx-group-0  "#1f2a1f")
+    (bg-search-rx-group-1  "#332020")
+    (bg-search-rx-group-2  "#332a20")
+    (bg-search-rx-group-3  "#202633")
+
+    (bg-char-0             "#332020")
+    (bg-char-1             "#1f2a1f")
+    (bg-char-2             "#332a20")
+    (bg-paren              "#202633")
+    (bg-red-intense        "#ff6b6b")
+
+    (rainbow-0             ,blue)
+    (rainbow-1             ,magenta)
+    (rainbow-2             ,green)
+    (rainbow-3             ,yellow)
+    (rainbow-4             ,red)
+    (rainbow-5             ,blue)
+    (rainbow-6             ,magenta)
+    (rainbow-7             ,green)
+    (rainbow-8             ,yellow)
 
 ;;; Mappings
 

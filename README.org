@@ -1,0 +1,316 @@
+#+TITLE: Alabaster Themes for Emacs
+#+AUTHOR: Niki Tonsky
+#+EMAIL: nikki@tonsky.me
+
+* Alabaster Themes for Emacs
+
+A collection of minimal light and dark themes for GNU Emacs based on the original Sublime Text Alabaster color scheme.
+
+[[https://github.com/tonsky/sublime-scheme-alabaster][https://img.shields.io/badge/GitHub-tonsky%2Fsublime--scheme--alabaster-blue.svg?style=flat-square]]
+
+* Overview
+
+The Alabaster themes follow a minimal highlighting philosophy. Unlike most color schemes that highlight everything they can (ending up looking like a fireworks show), Alabaster uses minimal highlighting with just a few carefully chosen color classes.
+
+** Design Principles
+
+1. *Minimal Highlighting*: Only four main syntax classes are highlighted:
+   - Strings
+   - Constants (numbers, symbols, keywords, boolean values)
+   - Comments
+   - Global definitions
+
+2. *No Keyword Highlighting*: Standard language keywords (if, else, function, etc.) are not highlighted. They are usually the least important and most obvious part of any program.
+
+3. *Comment Highlighting*: Comments are highlighted prominently. If code was complex enough to deserve an explanation, then it's that explanation we should see and read first.
+
+4. *No Font Variations*: The themes avoid mixing normal, bold, and italic text, making code easier to scan. Not all fonts provide bold/italic variants.
+
+5. *Reliable Parsing*: Only highlights things that the parser can identify reliably. Unreliable highlighting does more harm than good.
+
+6. *Conscious Color Usage*: With minimal rules, you can consciously use colors to look for specific information. All strings pop out because there aren't many other highlighted elements competing for attention.
+
+* Theme Variants
+
+The package includes five theme variants:
+
+| Theme | Description | Background Mode |
+|-------+-------------+-----------------|
+| =alabaster= | Light theme with foreground highlighting | light |
+| =alabaster-bg= | Light theme with background highlighting | light |
+| =alabaster-dark= | Dark theme with foreground highlighting | dark |
+| =alabaster-mono= | Light monochromatic theme | light |
+| =alabaster-dark-mono= | Dark monochromatic theme | dark |
+
+** Foreground vs Background Highlighting
+
+- *Foreground highlighting* (=alabaster=, =alabaster-dark=): Uses colored text for syntax elements
+- *Background highlighting* (=alabaster-bg=): Uses subtle background colors while keeping text black, creating a separate visual layer that's easier to ignore when reading
+- *Monochromatic* (=alabaster-mono=, =alabaster-dark-mono=): Minimal coloring, mostly monochrome with only errors and search results highlighted
+
+* Installation
+
+** Requirements
+
+- Emacs 28.1 or later
+
+** Installation via package.el
+
+The themes will be available on MELPA. Install with:
+
+#+begin_src emacs-lisp
+M-x package-install RET alabaster-themes RET
+#+end_src
+
+** Manual Installation
+
+1. Clone this repository or download the package
+2. Add the directory to your =load-path=
+3. Load the main file: =(require 'alabaster-themes)=
+
+** Basic Setup
+
+Load a theme interactively:
+
+#+begin_src emacs-lisp
+M-x load-theme RET alabaster RET
+#+end_src
+
+Or in your init file:
+
+#+begin_src emacs-lisp
+(load-theme 'alabaster t)
+#+end_src
+
+* Usage
+
+** Interactive Commands
+
+All commands are autoloaded and available after installing the package.
+
+*** Theme Selection
+
+- =alabaster-themes-select= :: Select any Alabaster theme with completion
+- =alabaster-themes-select-light= :: Select from light themes only
+- =alabaster-themes-select-dark= :: Select from dark themes only
+
+With a prefix argument, you can limit the selection to light or dark variants.
+
+*** Theme Management
+
+- =alabaster-themes-toggle= :: Toggle between two themes (customize =alabaster-themes-to-toggle=)
+- =alabaster-themes-load-random= :: Load a random Alabaster theme
+- =alabaster-themes-rotate= :: Rotate through a list of themes (customize =alabaster-themes-to-rotate=)
+
+*** Palette Preview
+
+- =alabaster-themes-list-colors= :: Preview the color palette of any theme
+- =alabaster-themes-list-colors-current= :: Preview palette of current theme
+- =alabaster-themes-preview-colors= :: Alias for =alabaster-themes-list-colors=
+
+With a prefix argument, preview only the semantic color mappings.
+
+** Customization Options
+
+*** Heading Styles
+
+Control the appearance of headings (like in Org mode):
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-headings
+      '((1 light variable-pitch 1.5)  ; Level 1: light weight, variable-pitch, 1.5x height
+        (2 regular 1.3)               ; Level 2: regular weight, 1.3x height
+        (3 1.1)                       ; Level 3: 1.1x height
+        (agenda-date 1.3)             ; Org agenda dates
+        (agenda-structure variable-pitch light 1.8)  ; Org agenda structure
+        (t variable-pitch)))          ; Default for all other levels
+#+end_src
+
+Properties you can set:
+- =variable-pitch= :: Use proportionally-spaced font
+- Weight symbols: =thin=, =ultralight=, =extralight=, =light=, =semilight=, =regular=, =medium=, =semibold=, =bold=, =extrabold=, =ultrabold=
+- Height: Floating-point number (e.g., 1.5) or =(height . FLOAT)=
+
+*** Font Options
+
+**Mixed Fonts**
+
+Enable inheritance from =fixed-pitch= in spacing-sensitive constructs (Org tables, code blocks):
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-mixed-fonts t)
+#+end_src
+
+**Variable Pitch UI**
+
+Use proportional fonts in UI elements (mode line, header line, tab bar):
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-variable-pitch-ui t)
+#+end_src
+
+*** Palette Overrides
+
+**Common Overrides**
+
+Override colors across all Alabaster themes:
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-common-palette-overrides
+      '((bg-main . "#FAFAFA")
+        (fg-main . "#111111")))
+#+end_src
+
+**Per-Theme Overrides**
+
+Override colors for a specific theme:
+
+#+begin_src emacs-lisp
+(setq alabaster-palette-overrides
+      '((cursor . "#FF0000")
+        (blue . "#0066CC")))
+#+end_src
+
+Available for all themes: =alabaster-palette-overrides=, =alabaster-bg-palette-overrides=, =alabaster-dark-palette-overrides=, =alabaster-mono-palette-overrides=, =alabaster-dark-mono-palette-overrides=
+
+*** Toggle Themes
+
+Set two themes to toggle between:
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-to-toggle '(alabaster-dark alabaster))
+#+end_src
+
+Then use =alabaster-themes-toggle= to switch between them.
+
+*** Rotate Themes
+
+Set a list of themes to rotate through:
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-to-rotate '(alabaster alabaster-bg alabaster-mono))
+#+end_src
+
+Then use =alabaster-themes-rotate= to cycle through them.
+
+*** Post-Load Hook
+
+Run code after loading a theme:
+
+#+begin_src emacs-lisp
+(add-hook 'alabaster-themes-post-load-hook
+          (lambda ()
+            (message "Alabaster theme loaded!")))
+#+end_src
+
+*** Disable Other Themes
+
+Control whether to disable all other themes when loading an Alabaster theme:
+
+#+begin_src emacs-lisp
+(setq alabaster-themes-disable-other-themes nil)  ; Only disable other Alabaster themes
+#+end_src
+
+* Package Support
+
+The themes provide comprehensive face coverage for popular packages:
+
+- *Version Control*: Magit, diff-hl, git-gutter
+- *Completion*: Company, Corfu, Vertico, Orderless, Consult, Embark, Marginalia
+- *Navigation*: Avy, Which-key
+- *Programming*: Flycheck, Flymake, Eglot, LSP Mode
+- *Documentation*: Org, Elfeed, EWW, Info, Man
+- *Mail*: Message, Gnus
+- *Editing*: Yasnippet, Smartparens, Show-paren, Rainbow-delimiters
+- *UI*: All-the-icons, Custom
+- *Search*: Isearch, Consult
+- *Dired*: Dired, Diredfl, Image-dired
+
+* Screenshots
+
+*TODO*: Add screenshots of all five theme variants
+
+* Troubleshooting
+
+** Colors look wrong or incomplete
+
+- Ensure the theme is loaded properly: =(load-theme 'alabaster t)=
+- Check for conflicting themes: =(custom-enabled-themes)=
+- Try disabling other themes: =(mapc #'disable-theme (custom-enabled-themes))=
+
+** Customizations not applying
+
+- Use =M-x customize-group RET alabaster-themes RET= to set options
+- Or set variables before loading the theme
+- Some changes require reloading the theme
+
+** Package faces not themed
+
+- Ensure the package is loaded after the theme
+- Some packages require restarting Emacs after theme changes
+- Check if the package face is in the theme: =M-x describe-face RET <face-name> RET=
+
+* Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+* Changelog
+
+See [[CHANGELOG.org][CHANGELOG.org]] for version history.
+
+* License
+
+MIT License - see LICENSE.txt for details
+
+* Credits
+
+Made by [[https://twitter.com/nikitonsky][Niki Tonsky]].
+
+Based on the original Sublime Text Alabaster color scheme.
+
+* See Also
+
+- [[https://github.com/tonsky/vscode-theme-alabaster][VSCode Theme Alabaster]]
+- [[https://github.com/tonsky/intellij-alabaster][IntelliJ Alabaster]]
+- [[https://github.com/protesilaos/ef-themes][EF Themes]] - Inspiration for the theme framework
+
+* Variables and Functions Index
+
+** Customization Variables
+
+- =alabaster-themes-headings= :: Per-level heading styles
+- =alabaster-themes-mixed-fonts= :: Use fixed-pitch in spacing-sensitive constructs
+- =alabaster-themes-variable-pitch-ui= :: Use proportional fonts in UI
+- =alabaster-themes-common-palette-overrides= :: Global palette overrides
+- =alabaster-themes-to-toggle= :: Themes to toggle between
+- =alabaster-themes-to-rotate= :: Themes to rotate through
+- =alabaster-themes-post-load-hook= :: Hook run after loading theme
+- =alabaster-themes-disable-other-themes= :: Disable other themes when loading
+
+** Commands
+
+- =alabaster-themes-select= :: Select theme
+- =alabaster-themes-select-light= :: Select light theme
+- =alabaster-themes-select-dark= :: Select dark theme
+- =alabaster-themes-toggle= :: Toggle between two themes
+- =alabaster-themes-load-random= :: Load random theme
+- =alabaster-themes-rotate= :: Rotate through themes
+- =alabaster-themes-list-colors= :: Preview theme palette
+- =alabaster-themes-list-colors-current= :: Preview current theme palette
+
+** Palette Colors
+
+Common palette variables available for customization:
+
+- Basic: =bg-main=, =fg-main=, =bg-dim=, =fg-dim=, =bg-alt=, =fg-alt=
+- Hues: =red=, =green=, =yellow=, =blue=, =magenta=
+- Background hues: =bg-red-subtle=, =bg-green-subtle=, etc.
+- Diffs: =bg-added=, =bg-removed=, =bg-changed= and variants
+- Special: =bg-mode-line=, =bg-region=, =cursor=, =border=
+- Mappings: =err=, =warning=, =info=, =link=, =builtin=, =comment=, =string=, etc.

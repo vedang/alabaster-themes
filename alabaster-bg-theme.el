@@ -1,9 +1,9 @@
 ;;; alabaster-bg-theme.el --- Alabaster BG light theme -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Your Name
+;; Copyright (C) 2025  Niki Tonsky
 
-;; Author: Your Name <your.email@example.com>
-;; Maintainer: Your Name <your.email@example.com>
+;; Author: Niki Tonsky <nikki.me>
+;; Maintainer: Niki Tonsky <nikki.me>
 ;; URL: https://github.com/tonsky/sublime-scheme-alabaster
 ;; Version: 1.0.0
 ;; Package-Requires: ((emacs "28.1"))
@@ -111,6 +111,33 @@
     (underline-err     "#AA3731")
     (underline-warning "#FFBC5D")
     (underline-info    "#325CC0")
+
+    (fg-region             "#000000")
+    (link-alt              ,blue)
+    (bg-search-current     "#FFBC5D")
+    (bg-search-lazy        "#FFFABC")
+    (bg-search-replace     "#FFE0E0")
+    (bg-search-match       "#DBF1FF")
+    (bg-search-rx-group-0  "#F1FADF")
+    (bg-search-rx-group-1  "#FFE0E0")
+    (bg-search-rx-group-2  "#FFFABC")
+    (bg-search-rx-group-3  "#DBF1FF")
+
+    (bg-char-0             "#FFE0E0")
+    (bg-char-1             "#F1FADF")
+    (bg-char-2             "#FFFABC")
+    (bg-paren              "#DBF1FF")
+    (bg-red-intense        "#ff6b6b")
+
+    (rainbow-0             ,blue)
+    (rainbow-1             ,magenta)
+    (rainbow-2             ,green)
+    (rainbow-3             ,yellow)
+    (rainbow-4             ,red)
+    (rainbow-5             ,blue)
+    (rainbow-6             ,magenta)
+    (rainbow-7             ,green)
+    (rainbow-8             ,yellow)
 
 ;;; Mappings
 

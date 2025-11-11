@@ -1,9 +1,9 @@
 ;;; alabaster-mono-theme.el --- Alabaster mono light theme -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Your Name
+;; Copyright (C) 2025  Niki Tonsky
 
-;; Author: Your Name <your.email@example.com>
-;; Maintainer: Your Name <your.email@example.com>
+;; Author: Niki Tonsky <nikki.me>
+;; Maintainer: Niki Tonsky <nikki.me>
 ;; URL: https://github.com/tonsky/sublime-scheme-alabaster
 ;; Version: 1.0.0
 ;; Package-Requires: ((emacs "28.1"))
@@ -111,6 +111,33 @@
     (underline-err     "#AA3731")
     (underline-warning "#777777")
     (underline-info    "#777777")
+
+    (fg-region             "#000000")
+    (link-alt              ,fg-main)
+    (bg-search-current     "#777777")
+    (bg-search-lazy        "#f0f0f0")
+    (bg-search-replace     "#FFE0E0")
+    (bg-search-match       "#f0f0f0")
+    (bg-search-rx-group-0  "#f0f0f0")
+    (bg-search-rx-group-1  "#FFE0E0")
+    (bg-search-rx-group-2  "#f0f0f0")
+    (bg-search-rx-group-3  "#f0f0f0")
+
+    (bg-char-0             "#FFE0E0")
+    (bg-char-1             "#f0f0f0")
+    (bg-char-2             "#f0f0f0")
+    (bg-paren              "#f0f0f0")
+    (bg-red-intense        "#ff6b6b")
+
+    (rainbow-0             ,fg-main)
+    (rainbow-1             ,fg-main)
+    (rainbow-2             ,fg-main)
+    (rainbow-3             ,yellow)
+    (rainbow-4             ,red)
+    (rainbow-5             ,fg-main)
+    (rainbow-6             ,fg-main)
+    (rainbow-7             ,fg-main)
+    (rainbow-8             ,yellow)
 
 ;;; Mappings
 

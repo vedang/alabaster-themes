@@ -1,9 +1,9 @@
 ;;; alabaster-common.el --- Common Alabaster theme definitions -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Your Name
+;; Copyright (C) 2025  Niki Tonsky
 
-;; Author: Your Name <your.email@example.com>
-;; Maintainer: Your Name <your.email@example.com>
+;; Author: Niki Tonsky <nikki.me>
+;; Maintainer: Niki Tonsky <nikki.me>
 ;; URL: https://github.com/tonsky/sublime-scheme-alabaster
 ;; Version: 1.0.0
 ;; Package-Requires: ((emacs "28.1"))
