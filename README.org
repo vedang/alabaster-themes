@@ -30,6 +30,44 @@ The Alabaster themes follow a minimal highlighting philosophy. Unlike most color
 
 6. *Conscious Color Usage*: With minimal rules, you can consciously use colors to look for specific information. All strings pop out because there aren't many other highlighted elements competing for attention.
 
+* Philosophy and Design Evolution
+
+** Relationship to Original Alabaster
+
+This Emacs implementation is *inspired by* the original Sublime Text Alabaster color scheme, but has evolved to balance minimalism with modern Emacs user expectations.
+
+** Adherence to Original Philosophy
+
+We maintain these core principles:
+- ✓ Only 4 syntax classes highlighted (strings, constants, comments, global definitions)
+- ✓ Comments highlighted prominently in red (not dimmed)
+- ✓ Keywords, types, and builtins use default text color (not highlighted)
+- ✓ Conscious, restrained color usage
+- ✓ Reliable parser-based highlighting
+
+** Divergences from Original Philosophy
+
+To support modern Emacs workflows, we made pragmatic compromises:
+
+1. *Font Variations*: The original avoids bold/italic entirely. We use them sparingly for UI emphasis (headings, errors, Magit headers) - 95 of 506 faces inherit bold/italic.
+
+2. *Package Support*: Original had ~40 faces for core syntax only. We provide 506 faces supporting 30+ packages (Magit, Org, Dired, etc.) for a consistent UI experience.
+
+3. *Keywords in Some Variants*: 
+   - =alabaster= and =alabaster-dark=: Keywords use =fg-main= (black/white) - compliant
+   - =alabaster-bg=: Comments use yellow instead of red - partially divergent
+   - =alabaster-mono= and =alabaster-dark-mono=: Everything monochrome except errors - most compliant
+
+** Which Variant Should You Use?
+
+- For *pure minimalism* closest to original: Use =alabaster-mono= or =alabaster-dark-mono=
+- For *balanced minimalism* with rich UI theming: Use =alabaster= or =alabaster-dark=
+- For *background highlighting* instead of text: Use =alabaster-bg=
+
+** Bottom Line
+
+This is a pragmatic evolution that preserves Alabaster's color philosophy for code while providing comprehensive theming for the entire Emacs experience. The mono variants offer the purest Alabaster experience, while the regular variants trade absolute minimalism for modern usability.
+
 * Theme Variants
 
 The package includes five theme variants:
