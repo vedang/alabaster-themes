@@ -203,7 +203,7 @@
     `(cursor ((,c :background ,cursor)))
     `(fringe ((,c :background ,bg-dim :foreground ,fg-dim)))
     `(line-number ((,c :inherit fringe)))
-    `(line-number-current-line ((,c :inherit bold :foreground ,fg-intense)))
+    `(line-number-current-line ((,c ,@(alabaster-themes--bold) :foreground ,fg-intense)))
     `(hl-line ((,c :background ,bg-hl-line)))
     `(region ((,c :background ,bg-region :foreground ,fg-region)))
     `(highlight ((,c :background ,bg-hover :foreground ,fg-intense)))
@@ -214,9 +214,9 @@
     `(link ((,c :foreground ,link :underline ,border)))
     `(link-visited ((,c :foreground ,link-alt :underline ,border)))
     `(minibuffer-prompt ((,c :foreground ,prompt)))
-    `(error ((,c :inherit bold :foreground ,err)))
-    `(warning ((,c :inherit bold :foreground ,warning)))
-    `(success ((,c :inherit bold :foreground ,info)))
+    `(error ((,c ,@(alabaster-themes--bold) :foreground ,err)))
+    `(warning ((,c ,@(alabaster-themes--bold) :foreground ,warning)))
+    `(success ((,c ,@(alabaster-themes--bold) :foreground ,info)))
     `(shadow ((,c :foreground ,fg-dim)))
     `(tooltip ((,c :background ,bg-alt :foreground ,fg-intense)))
 
@@ -237,16 +237,16 @@
 ;;;; mode-line faces
     `(mode-line ((,c :background ,bg-mode-line :foreground ,fg-mode-line)))
     `(mode-line-inactive ((,c :background ,bg-inactive :foreground ,fg-dim)))
-    `(mode-line-buffer-id ((,c :inherit bold)))
-    `(mode-line-emphasis ((,c :inherit bold)))
+    `(mode-line-buffer-id ((,c ,@(alabaster-themes--bold))))
+    `(mode-line-emphasis ((,c ,@(alabaster-themes--bold))))
     `(mode-line-highlight ((,c :inherit highlight)))
 
 ;;;; diff faces
     `(diff-added ((,c :background ,bg-added :foreground ,fg-added)))
     `(diff-changed ((,c :background ,bg-changed :foreground ,fg-changed)))
     `(diff-removed ((,c :background ,bg-removed :foreground ,fg-removed)))
-    `(diff-header ((,c :inherit bold)))
-    `(diff-file-header ((,c :inherit bold :background ,bg-alt)))
+    `(diff-header ((,c ,@(alabaster-themes--bold))))
+    `(diff-file-header ((,c ,@(alabaster-themes--bold) :background ,bg-alt)))
     `(diff-hunk-header ((,c :background ,bg-active :foreground ,fg-intense)))
     `(diff-context ((,c :foreground ,fg-dim)))
     `(diff-indicator-added ((,c :inherit diff-added)))
@@ -294,7 +294,7 @@
 ;;;; Fringe
     `(fringe ((,c :background ,bg-dim :foreground ,fg-dim)))
     `(line-number ((,c :inherit fringe)))
-    `(line-number-current-line ((,c :inherit bold :foreground ,fg-intense)))
+    `(line-number-current-line ((,c ,@(alabaster-themes--bold) :foreground ,fg-intense)))
 
 ;;;; Tooltip
     `(tooltip ((,c :background ,bg-alt :foreground ,fg-intense)))
