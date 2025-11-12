@@ -1,6 +1,6 @@
 #+TITLE: Alabaster Themes for Emacs
-#+AUTHOR: Niki Tonsky
-#+EMAIL: nikki@tonsky.me
+#+AUTHOR: Vedang Manerikar
+#+EMAIL: ved.manerikar@gmail.com
 
 * Alabaster Themes for Emacs
 
@@ -62,7 +62,7 @@ To support modern Emacs workflows, we made pragmatic compromises:
 
 - For *pure minimalism* closest to original: Use =alabaster-mono= or =alabaster-dark-mono=
 - For *balanced minimalism* with rich UI theming: Use =alabaster= or =alabaster-dark=
-- For *background highlighting* instead of text: Use =alabaster-bg=
+- For *background highlighting* instead of text: Use =alabaster-bg= (My Favourite!)
 
 ** Bottom Line
 
@@ -140,23 +140,23 @@ All commands are autoloaded and available after installing the package.
 
 *** Theme Selection
 
-- =alabaster-themes-select= :: Select any Alabaster theme with completion
-- =alabaster-themes-select-light= :: Select from light themes only
-- =alabaster-themes-select-dark= :: Select from dark themes only
+- =alabaster-themes-select= : Select any Alabaster theme with completion
+- =alabaster-themes-select-light= : Select from light themes only
+- =alabaster-themes-select-dark= : Select from dark themes only
 
 With a prefix argument, you can limit the selection to light or dark variants.
 
 *** Theme Management
 
-- =alabaster-themes-toggle= :: Toggle between two themes (customize =alabaster-themes-to-toggle=)
-- =alabaster-themes-load-random= :: Load a random Alabaster theme
-- =alabaster-themes-rotate= :: Rotate through a list of themes (customize =alabaster-themes-to-rotate=)
+- =alabaster-themes-toggle= : Toggle between two themes (customize =alabaster-themes-to-toggle=)
+- =alabaster-themes-load-random= : Load a random Alabaster theme
+- =alabaster-themes-rotate= : Rotate through a list of themes (customize =alabaster-themes-to-rotate=)
 
 *** Palette Preview
 
-- =alabaster-themes-list-colors= :: Preview the color palette of any theme
-- =alabaster-themes-list-colors-current= :: Preview palette of current theme
-- =alabaster-themes-preview-colors= :: Alias for =alabaster-themes-list-colors=
+- =alabaster-themes-list-colors= : Preview the color palette of any theme
+- =alabaster-themes-list-colors-current= : Preview palette of current theme
+- =alabaster-themes-preview-colors= : Alias for =alabaster-themes-list-colors=
 
 With a prefix argument, preview only the semantic color mappings.
 
@@ -177,7 +177,7 @@ Control the appearance of headings (like in Org mode):
 #+end_src
 
 Properties you can set:
-- =variable-pitch= :: Use proportionally-spaced font
+- =variable-pitch=: Use proportionally-spaced font
 - Weight symbols: =thin=, =ultralight=, =extralight=, =light=, =semilight=, =regular=, =medium=, =semibold=, =bold=, =extrabold=, =ultrabold=
 - Height: Floating-point number (e.g., 1.5) or =(height . FLOAT)=
 
@@ -258,7 +258,7 @@ Run code after loading a theme:
 Control whether to disable all other themes when loading an Alabaster theme:
 
 #+begin_src emacs-lisp
-(setq alabaster-themes-disable-other-themes nil)  ; Only disable other Alabaster themes
+  (setq alabaster-themes-disable-other-themes nil)  ; Only disable other Alabaster themes
 #+end_src
 
 * Package Support
@@ -316,43 +316,41 @@ See [[CHANGELOG.org][CHANGELOG.org]] for version history.
 
 * License
 
-MIT License - see LICENSE.txt for details
+MIT License - same as the original Alabaster theme by Nikita Prokopov.
 
 * Credits
 
-Made by [[https://twitter.com/nikitonsky][Niki Tonsky]].
-
-Based on the original Sublime Text Alabaster color scheme.
+- Original Alabaster theme by [[https://mastodon.online/@nikitonsky][Tonsky]].
+- Theme Framework based on [[https://github.com/protesilaos/ef-themes][Ef Themes]] by Prot
 
 * See Also
 
 - [[https://github.com/tonsky/vscode-theme-alabaster][VSCode Theme Alabaster]]
 - [[https://github.com/tonsky/intellij-alabaster][IntelliJ Alabaster]]
-- [[https://github.com/protesilaos/ef-themes][EF Themes]] - Inspiration for the theme framework
 
 * Variables and Functions Index
 
 ** Customization Variables
 
-- =alabaster-themes-headings= :: Per-level heading styles
-- =alabaster-themes-mixed-fonts= :: Use fixed-pitch in spacing-sensitive constructs
-- =alabaster-themes-variable-pitch-ui= :: Use proportional fonts in UI
-- =alabaster-themes-common-palette-overrides= :: Global palette overrides
-- =alabaster-themes-to-toggle= :: Themes to toggle between
-- =alabaster-themes-to-rotate= :: Themes to rotate through
-- =alabaster-themes-post-load-hook= :: Hook run after loading theme
-- =alabaster-themes-disable-other-themes= :: Disable other themes when loading
+- =alabaster-themes-headings= : Per-level heading styles
+- =alabaster-themes-mixed-fonts= : Use fixed-pitch in spacing-sensitive constructs
+- =alabaster-themes-variable-pitch-ui= : Use proportional fonts in UI
+- =alabaster-themes-common-palette-overrides= : Global palette overrides
+- =alabaster-themes-to-toggle= : Themes to toggle between
+- =alabaster-themes-to-rotate= : Themes to rotate through
+- =alabaster-themes-post-load-hook= : Hook run after loading theme
+- =alabaster-themes-disable-other-themes= : Disable other themes when loading
 
 ** Commands
 
-- =alabaster-themes-select= :: Select theme
-- =alabaster-themes-select-light= :: Select light theme
-- =alabaster-themes-select-dark= :: Select dark theme
-- =alabaster-themes-toggle= :: Toggle between two themes
-- =alabaster-themes-load-random= :: Load random theme
-- =alabaster-themes-rotate= :: Rotate through themes
-- =alabaster-themes-list-colors= :: Preview theme palette
-- =alabaster-themes-list-colors-current= :: Preview current theme palette
+- =alabaster-themes-select= : Select theme
+- =alabaster-themes-select-light= : Select light theme
+- =alabaster-themes-select-dark= : Select dark theme
+- =alabaster-themes-toggle= : Toggle between two themes
+- =alabaster-themes-load-random= : Load random theme
+- =alabaster-themes-rotate= : Rotate through themes
+- =alabaster-themes-list-colors= : Preview theme palette
+- =alabaster-themes-list-colors-current= : Preview current theme palette
 
 ** Palette Colors
 

@@ -1,11 +1,11 @@
 ;;; alabaster-mono-theme.el --- Alabaster mono light theme -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Niki Tonsky
+;; Copyright (C) 2025 Nikita Prokopov
 
-;; Author: Niki Tonsky <nikki.me>
-;; Maintainer: Niki Tonsky <nikki.me>
-;; URL: https://github.com/tonsky/sublime-scheme-alabaster
-;; Version: 1.0.0
+;; Author: Nikita Prokopov
+;; Maintainer: Vedang Manerikar
+;; URL: https://github.com/vedang/alabaster-themes
+;; Version: 1.0.1
 ;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: faces, theme, minimal
 

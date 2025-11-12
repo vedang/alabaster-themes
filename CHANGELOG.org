@@ -1,5 +1,6 @@
 #+TITLE: Changelog for Alabaster Themes
-#+AUTHOR: Niki Tonsky
+#+AUTHOR: Vedang Manerikar
+#+BASED_ON: Alabaster theme by Nikita Prokopov
 
 * Unreleased
 
@@ -134,7 +135,7 @@ This release represents a complete rewrite of the alabaster-emacs package to ali
 
 Refactoring inspired by [[https://github.com/protesilaos/ef-themes][Protesilaos Stavrou's ef-themes]].
 
-* Version 0.1.0 (2023-XX-XX)
+* Version 0.1.0 (2025-XX-XX)
 
 Initial release of alabaster-emacs package.
 

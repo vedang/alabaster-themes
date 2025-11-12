@@ -1,11 +1,11 @@
 ;;; alabaster-theme.el --- Alabaster themes collection -*- lexical-binding:t -*-
 
-;; Copyright (C) 2025  Niki Tonsky
+;; Copyright (C) 2025 Nikita Prokopov
 
-;; Author: Niki Tonsky <nikki.me>
-;; Maintainer: Niki Tonsky <nikki.me>
-;; URL: https://github.com/tonsky/sublime-scheme-alabaster
-;; Version: 1.0.0
+;; Author: Nikita Prokopov
+;; Maintainer: Vedang Manerikar
+;; URL: https://github.com/vedang/alabaster-themes
+;; Version: 1.0.1
 ;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: faces, theme, minimal
 
@@ -47,7 +47,7 @@
 (defgroup alabaster-themes ()
   "Minimal Alabaster themes."
   :group 'faces
-  :link '(url-link :tag "Homepage" "https://github.com/tonsky/sublime-scheme-alabaster")
+  :link '(url-link :tag "Homepage" "https://github.com/vedang/alabaster-themes")
   :prefix "alabaster-themes-"
   :tag "Alabaster Themes")
 
@@ -671,8 +671,8 @@ instead of the default `alabaster-themes-faces'."
 
 ;;;; rainbow-delimiters
     `(rainbow-delimiters-base-error-face ((,c :inherit ,(if alabaster-themes-no-bold
-                                                              '(show-paren-mismatch)
-                                                            '(bold show-paren-mismatch)))))
+                                                            '(show-paren-mismatch)
+                                                          '(bold show-paren-mismatch)))))
     `(rainbow-delimiters-base-face    ((,c :foreground ,rainbow-0)))
     `(rainbow-delimiters-depth-1-face ((,c :foreground ,rainbow-0)))
     `(rainbow-delimiters-depth-2-face ((,c :foreground ,rainbow-1)))
@@ -685,8 +685,8 @@ instead of the default `alabaster-themes-faces'."
     `(rainbow-delimiters-depth-9-face ((,c :foreground ,rainbow-8)))
     `(rainbow-delimiters-mismatched-face ((,c :background ,bg-red-intense :foreground ,fg-intense)))
     `(rainbow-delimiters-unmatched-face ((,c :inherit ,(if alabaster-themes-no-bold
-                                                                '(rainbow-delimiters-mismatched-face)
-                                                              '(bold rainbow-delimiters-mismatched-face)))))
+                                                           '(rainbow-delimiters-mismatched-face)
+                                                         '(bold rainbow-delimiters-mismatched-face)))))
 
 ;;;; wgrep
     `(wgrep-delete-face ((,c :inherit warning)))
@@ -736,8 +736,8 @@ instead of the default `alabaster-themes-faces'."
     `(custom-changed ((,c :background ,bg-changed)))
     `(custom-comment ((,c :inherit shadow)))
     `(custom-comment-tag ((,c :inherit ,(if alabaster-themes-no-bold
-                                                '(shadow)
-                                              '(bold shadow)))))
+                                            '(shadow)
+                                          '(bold shadow)))))
     `(custom-face-tag ((,c ,@(alabaster-themes--bold) :foreground ,type)))
     `(custom-group-tag ((,c ,@(alabaster-themes--bold) :foreground ,builtin)))
     `(custom-group-tag-1 ((,c ,@(alabaster-themes--bold) :foreground ,constant)))
