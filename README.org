@@ -68,6 +68,18 @@ To support modern Emacs workflows, we made pragmatic compromises:
 
 This is a pragmatic evolution that preserves Alabaster's color philosophy for code while providing comprehensive theming for the entire Emacs experience. The mono variants offer the purest Alabaster experience, while the regular variants trade absolute minimalism for modern usability.
 
+** For Sublime Alabaster Purists
+
+If you want the closest experience to the original:
+- Use =alabaster-mono= or =alabaster-dark-mono=
+- Set =(setq alabaster-themes-no-bold t)=
+- These variants have minimal highlighting
+
+For the full modern Emacs experience:
+- Use =alabaster= or =alabaster-dark=
+- Enjoy comprehensive package support
+- Accept pragmatic compromises
+
 * Theme Variants
 
 The package includes five theme variants:
