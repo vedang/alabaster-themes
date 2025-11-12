@@ -3,6 +3,11 @@
 
 * Unreleased
 
+** New Features
+- Added ~alabaster-themes-no-bold~ customization option to disable bold font variations
+- Theme now respects original Alabaster philosophy when ~alabaster-themes-no-bold~ is set to t
+- All 85+ bold face definitions now conditionally apply bold based on user preference
+
 ** Cleanup
 - Removed ~alabaster-common.el~ deadcode file (colors are now defined in theme palettes)
 - Removed obsolete test cases referencing removed color variables
