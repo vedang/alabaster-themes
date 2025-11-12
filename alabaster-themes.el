@@ -1310,10 +1310,20 @@ list given LIST-PRED, using DEFAULT as a fallback."
          (weight (when style-listp (alabaster-themes--weight style))))
     (list :inherit
           (cond
-           ((not style-listp) 'bold)
+           ((not style-listp)
+            ;; If bold is disabled, just inherit var or nothing
+            (if alabaster-themes-no-bold
+                (or var 'default)
+              'bold))
            (weight var)
-           (var (append (list 'bold) (list var)))
-           (t 'bold))
+           (var
+            (if alabaster-themes-no-bold
+                var
+              (append (list 'bold) (list var))))
+           (t
+            (if alabaster-themes-no-bold
+                'default
+              'bold)))
           :height
           (if style-listp
               (alabaster-themes--property-lookup properties 'height #'floatp 'unspecified)
