@@ -18,12 +18,6 @@
     (it "should load alabaster-theme without errors"
       (expect (require 'alabaster-theme) :not :to-throw))
 
-    (it "should load common definitions"
-      (expect (featurep 'alabaster-common) :to-be t)
-      (expect alabaster-green :to-equal "#448C27")
-      (expect alabaster-blue :to-equal "#325CC0")
-      (expect alabaster-red :to-equal "#AA3731"))
-
     (it "should provide customization group"
       (expect (get 'alabaster 'group-documentation) :to-be-truthy)))
 
@@ -37,15 +31,7 @@
 
       (it "should provide all themes"
         (dolist (theme themes)
-          (expect (custom-available-themes) :to-contain theme)))
-
-      (it "should define all required color variables"
-        (expect alabaster-active :to-equal "#007ACC")
-        (expect alabaster-selection :to-equal "#BFDBFE")
-        (expect alabaster-light-fg :to-equal "#000000")
-        (expect alabaster-light-bg :to-equal "#F7F7F7")
-        (expect alabaster-dark-fg :to-equal "#CECECE")
-        (expect alabaster-dark-bg :to-equal "#0E1415")))
+          (expect (custom-available-themes) :to-contain theme)))))
 
   (describe "Theme Loading Functions"
     (before-each
@@ -151,19 +137,7 @@
 
       (expect (face-attribute 'diff-added :foreground) :to-match "hsl(100, 50%, 50%)")
       (expect (face-attribute 'diff-removed :foreground) :to-match "hsl(2, 65%, 50%)")
-      (expect (face-attribute 'diff-changed :foreground) :to-match "hsl(30, 85%, 50%)")))
-
-  (describe "Color Variable Customization"
-    (it "should allow customization of theme colors"
-      (let ((original-green alabaster-green))
-        (setq alabaster-green "#00FF00")
-        (expect alabaster-green :to-equal "#00FF00")
-        (setq alabaster-green original-green))) ; Restore original
-
-    (it "should provide proper defcustom variables"
-      (expect (get 'alabaster-green 'standard-value) :not :to-be nil)
-      (expect (get 'alabaster-green 'custom-type) :to-equal 'string)
-      (expect (get 'alabaster-green 'group) :to-equal 'alabaster))))
+      (expect (face-attribute 'diff-changed :foreground) :to-match "hsl(30, 85%, 50%)"))))
 
 (provide 'alabaster-test)
 ;;; alabaster-test.el ends here

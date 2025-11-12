@@ -1,6 +1,12 @@
 #+TITLE: Changelog for Alabaster Themes
 #+AUTHOR: Niki Tonsky
 
+* Unreleased
+
+** Cleanup
+- Removed ~alabaster-common.el~ deadcode file (colors are now defined in theme palettes)
+- Removed obsolete test cases referencing removed color variables
+
 * Version 1.0.0 (2025-11-11)
 
 ** Major Refactoring
