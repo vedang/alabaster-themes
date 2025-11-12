@@ -9,14 +9,12 @@ echo "==============================="
 cd "$(dirname "$0")/.."
 
 # Ensure buttercup is available
-if ! emacs --batch --eval "(progn (require 'buttercup))" 2>/dev/null; then
-    echo "Error: buttercup is not installed."
-    echo "Install it with: M-x package-install RET buttercup RET"
+BUTTERCUP_PATH=$(emacs --batch --eval "(progn (package-initialize) (princ (file-name-directory (locate-library \"buttercup\"))))" 2>/dev/null)
+if [ -z "$BUTTERCUP_PATH" ]; then
+    echo "Error: Cannot locate buttercup path."
     exit 1
 fi
-
-# Run the test suite
-emacs --batch -l test/alabaster-test.el -f buttercup-run-discover
+emacs --batch -L . -L "$BUTTERCUP_PATH" -l test/alabaster-test.el -f buttercup-run-discover
 
 echo ""
 echo "==============================="
