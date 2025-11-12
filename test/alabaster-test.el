@@ -110,7 +110,32 @@
     (it "should define UI faces"
       (expect (facep 'mode-line) :to-be-truthy)
       (expect (facep 'mode-line-inactive) :to-be-truthy)
-      (expect (facep 'default) :to-be-truthy))))
+      (expect (facep 'default) :to-be-truthy)))
+
+  (describe "Bold Customization"
+    (before-each
+      (mapc #'disable-theme custom-enabled-themes))
+
+    (it "should apply bold by default"
+      (setq alabaster-themes-no-bold nil)
+      (load-theme 'alabaster t)
+      (let ((helper-result (alabaster-themes--bold)))
+        (expect helper-result :to-equal '(:inherit bold))))
+
+    (it "should remove bold when alabaster-themes-no-bold is t"
+      (setq alabaster-themes-no-bold t)
+      (let ((helper-result (alabaster-themes--bold)))
+        (expect helper-result :to-be nil)))
+
+    (it "should affect heading styles"
+      (setq alabaster-themes-no-bold nil)
+      (let ((heading-spec (alabaster-themes--heading 1)))
+        (expect (plist-get heading-spec :inherit) :to-be-truthy))
+
+      (setq alabaster-themes-no-bold t)
+      (let ((heading-spec (alabaster-themes--heading 1)))
+        ;; Should not have bold in inheritance
+        (expect (plist-get heading-spec :inherit) :not :to-equal 'bold)))))
 
 (provide 'alabaster-test)
 ;;; alabaster-test.el ends here
