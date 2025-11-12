@@ -1328,6 +1328,12 @@ something like the command `variable-pitch-mode'."
   :group 'alabaster-themes
   :type 'boolean)
 
+(defcustom alabaster-themes-no-bold nil
+  "When non-nil, remove bold weight from faces to match original Alabaster philosophy.
+The original Alabaster theme avoids font variations entirely."
+  :group 'alabaster-themes
+  :type 'boolean)
+
 (defcustom alabaster-themes-variable-pitch-ui nil
   "Use proportional fonts (`variable-pitch') in UI elements.
 This includes the mode line, header line, tab bar, and tab line."
