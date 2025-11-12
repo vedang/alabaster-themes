@@ -1349,3 +1349,9 @@ This includes the mode line, header line, tab bar, and tab line."
   "Conditional application of `variable-pitch' in the UI."
   (when alabaster-themes-variable-pitch-ui
     (list :inherit 'variable-pitch)))
+
+(defun alabaster-themes--bold ()
+  "Conditional application of `bold' inheritance.
+Returns bold inheritance unless `alabaster-themes-no-bold' is non-nil."
+  (unless alabaster-themes-no-bold
+    (list :inherit 'bold)))
