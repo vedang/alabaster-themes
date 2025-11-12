@@ -184,13 +184,16 @@ overrides."
 
 ;;; Theme definition macro
 
-(defmacro alabaster-themes-theme (name palette &optional overrides)
+(defmacro alabaster-themes-theme (name palette &optional overrides faces)
   "Bind NAME's color PALETTE around face specs and variables.
 Face specifications are passed to `custom-theme-set-faces'.
 While variables are handled by `custom-theme-set-variables'.
 
 Optional OVERRIDES are appended to PALETTE, overriding
-corresponding entries."
+corresponding entries.
+
+Optional FACES can be used to provide custom face specifications
+instead of the default `alabaster-themes-faces'."
   (declare (indent 0))
   (let ((sym (gensym))
         (colors (mapcar #'car (symbol-value palette))))
@@ -200,7 +203,7 @@ corresponding entries."
                         (list color
                               `(alabaster-themes--retrieve-palette-value ',color ,sym)))
                       colors))
-       (custom-theme-set-faces ',name ,@alabaster-themes-faces)
+       (custom-theme-set-faces ',name ,@(or (and faces (symbol-value faces)) alabaster-themes-faces))
        (custom-theme-set-variables ',name ,@alabaster-themes-custom-variables))))
 
 (defmacro alabaster-themes-with-colors (&rest body)
@@ -1340,4 +1343,3 @@ This includes the mode line, header line, tab bar, and tab line."
   "Conditional application of `variable-pitch' in the UI."
   (when alabaster-themes-variable-pitch-ui
     (list :inherit 'variable-pitch)))
-

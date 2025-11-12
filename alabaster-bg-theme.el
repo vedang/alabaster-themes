@@ -31,7 +31,10 @@
 ;;
 ;; The `alabaster-bg' theme is a minimal light theme with background highlighting.
 ;; It uses subtle background colors to highlight syntax elements.
-
+;; Unlike other Alabaster themes, this variant requires custom face definitions
+;; because it uses background colors for syntax highlighting instead of foreground.
+;; The standard palette mappings work for foreground highlighting but cannot
+;; express the background-first approach needed here.
 ;;; Code:
 
 ;;;###theme-autoload
@@ -191,7 +194,159 @@
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
-(alabaster-themes-theme alabaster-bg alabaster-bg-palette alabaster-bg-palette-overrides)
+;;; Face specifications for background highlighting
+
+(defvar alabaster-bg-faces
+  '(
+;;;; basic faces
+    `(default ((,c :background ,bg-main :foreground ,fg-main)))
+    `(cursor ((,c :background ,cursor)))
+    `(fringe ((,c :background ,bg-dim :foreground ,fg-dim)))
+    `(line-number ((,c :inherit fringe)))
+    `(line-number-current-line ((,c :inherit bold :foreground ,fg-intense)))
+    `(hl-line ((,c :background ,bg-hl-line)))
+    `(region ((,c :background ,bg-region :foreground ,fg-region)))
+    `(highlight ((,c :background ,bg-hover :foreground ,fg-intense)))
+    `(isearch ((,c :background ,bg-search-current :foreground ,fg-intense)))
+    `(lazy-highlight ((,c :background ,bg-search-lazy :foreground ,fg-intense)))
+    `(match ((,c :background ,bg-search-match)))
+    `(button ((,c :foreground ,link :underline ,border)))
+    `(link ((,c :foreground ,link :underline ,border)))
+    `(link-visited ((,c :foreground ,link-alt :underline ,border)))
+    `(minibuffer-prompt ((,c :foreground ,prompt)))
+    `(error ((,c :inherit bold :foreground ,err)))
+    `(warning ((,c :inherit bold :foreground ,warning)))
+    `(success ((,c :inherit bold :foreground ,info)))
+    `(shadow ((,c :foreground ,fg-dim)))
+    `(tooltip ((,c :background ,bg-alt :foreground ,fg-intense)))
+
+;;;; font-lock faces with background highlighting
+    `(font-lock-comment-face ((,c :background ,bg-yellow-subtle :foreground ,fg-main)))
+    `(font-lock-comment-delimiter-face ((,c :inherit font-lock-comment-face)))
+    `(font-lock-string-face ((,c :background ,bg-green-subtle :foreground ,fg-main)))
+    `(font-lock-doc-face ((,c :inherit font-lock-string-face)))
+    `(font-lock-keyword-face ((,c :foreground ,keyword)))
+    `(font-lock-builtin-face ((,c :foreground ,builtin)))
+    `(font-lock-function-name-face ((,c :background ,bg-blue-subtle :foreground ,fg-main)))
+    `(font-lock-variable-name-face ((,c :foreground ,variable)))
+    `(font-lock-type-face ((,c :foreground ,type)))
+    `(font-lock-constant-face ((,c :background ,bg-magenta-subtle :foreground ,fg-main)))
+    `(font-lock-preprocessor-face ((,c :foreground ,preprocessor)))
+    `(font-lock-warning-face ((,c :inherit warning)))
+
+;;;; mode-line faces
+    `(mode-line ((,c :background ,bg-mode-line :foreground ,fg-mode-line)))
+    `(mode-line-inactive ((,c :background ,bg-inactive :foreground ,fg-dim)))
+    `(mode-line-buffer-id ((,c :inherit bold)))
+    `(mode-line-emphasis ((,c :inherit bold)))
+    `(mode-line-highlight ((,c :inherit highlight)))
+
+;;;; diff faces
+    `(diff-added ((,c :background ,bg-added :foreground ,fg-added)))
+    `(diff-changed ((,c :background ,bg-changed :foreground ,fg-changed)))
+    `(diff-removed ((,c :background ,bg-removed :foreground ,fg-removed)))
+    `(diff-header ((,c :inherit bold)))
+    `(diff-file-header ((,c :inherit bold :background ,bg-alt)))
+    `(diff-hunk-header ((,c :background ,bg-active :foreground ,fg-intense)))
+    `(diff-context ((,c :foreground ,fg-dim)))
+    `(diff-indicator-added ((,c :inherit diff-added)))
+    `(diff-indicator-changed ((,c :inherit diff-changed)))
+    `(diff-indicator-removed ((,c :inherit diff-removed)))
+    `(diff-refine-added ((,c :background ,bg-added-refine :foreground ,fg-added)))
+    `(diff-refine-changed ((,c :background ,bg-changed-refine :foreground ,fg-changed)))
+    `(diff-refine-removed ((,c :background ,bg-removed-refine :foreground ,fg-removed)))
+
+;;;; Search and highlight faces
+    `(isearch-fail ((,c :background ,bg-err :foreground ,fg-intense)))
+    `(query-replace ((,c :inherit isearch)))
+    `(lazy-highlight ((,c :background ,bg-search-lazy :foreground ,fg-intense)))
+    `(match ((,c :background ,bg-search-match)))
+
+;;;; Parenthesis matching
+    `(show-paren-match ((,c :background ,bg-paren :foreground ,fg-intense)))
+    `(show-paren-match-expression ((,c :background ,bg-alt)))
+    `(show-paren-mismatch ((,c :background ,bg-red-intense :foreground ,fg-intense)))
+
+;;;; Line highlighting
+    `(hl-line ((,c :background ,bg-hl-line)))
+    `(highlight ((,c :background ,bg-hover :foreground ,fg-intense)))
+    `(region ((,c :background ,bg-region :foreground ,fg-region)))
+
+;;;; Compilation and grep
+    `(compilation-line-number ((,c :foreground ,fg-dim)))
+    `(compilation-error ((,c :inherit error)))
+    `(compilation-warning ((,c :inherit warning)))
+    `(compilation-info ((,c :inherit success)))
+    `(compilation-mode-line-exit ((,c :inherit success)))
+    `(compilation-mode-line-run ((,c :foreground ,fg-alt)))
+    `(compilation-mode-line-fail ((,c :inherit error)))
+
+;;;; Flymake
+    `(flymake-error ((,c :underline (:style wave :color ,underline-err))))
+    `(flymake-warning ((,c :underline (:style wave :color ,underline-warning))))
+    `(flymake-note ((,c :underline (:style wave :color ,underline-info))))
+
+;;;; Flycheck
+    `(flycheck-error ((,c :underline (:style wave :color ,underline-err))))
+    `(flycheck-warning ((,c :underline (:style wave :color ,underline-warning))))
+    `(flycheck-info ((,c :underline (:style wave :color ,underline-info))))
+
+;;;; Fringe
+    `(fringe ((,c :background ,bg-dim :foreground ,fg-dim)))
+    `(line-number ((,c :inherit fringe)))
+    `(line-number-current-line ((,c :inherit bold :foreground ,fg-intense)))
+
+;;;; Tooltip
+    `(tooltip ((,c :background ,bg-alt :foreground ,fg-intense)))
+
+;;;; Completions
+    `(completions-common-part ((,c :foreground ,fg-alt)))
+    `(completions-first-difference ((,c :foreground ,fg-intense)))
+
+;;;; Widget
+    `(widget-field ((,c :background ,bg-active :foreground ,fg-intense)))
+    `(widget-button ((,c :foreground ,link)))
+    `(widget-button-pressed ((,c :foreground ,link-alt)))
+    `(widget-documentation ((,c :foreground ,docstring)))
+    `(widget-single-line-field ((,c :background ,bg-active :foreground ,fg-intense)))
+
+;;;; Button
+    `(button ((,c :foreground ,link :underline ,border)))
+    `(link ((,c :foreground ,link :underline ,border)))
+    `(link-visited ((,c :foreground ,link-alt :underline ,border)))
+
+;;;; Escape and prompt faces
+    `(minibuffer-prompt ((,c :foreground ,prompt)))
+    `(escape-glyph ((,c :foreground ,yellow)))
+    `(homoglyph ((,c :foreground ,yellow)))
+
+;;;; Trailing whitespace
+    `(trailing-whitespace ((,c :background ,bg-err)))
+
+;;;; Cursor
+    `(cursor ((,c :background ,cursor)))
+
+;;;; Tab bar
+    `(tab-bar ((,c :background ,bg-dim :foreground ,fg-dim)))
+    `(tab-bar-tab ((,c :background ,bg-main :foreground ,fg-main)))
+    `(tab-bar-tab-inactive ((,c :background ,bg-inactive :foreground ,fg-dim)))
+
+;;;; Tab line
+    `(tab-line ((,c :background ,bg-dim :foreground ,fg-dim)))
+    `(tab-line-tab ((,c :background ,bg-main :foreground ,fg-main)))
+    `(tab-line-tab-inactive ((,c :background ,bg-inactive :foreground ,fg-dim)))
+    `(tab-line-tab-current ((,c :inherit tab-line-tab)))
+
+;;;; Window divider
+    `(window-divider ((,c :foreground ,border)))
+    `(window-divider-first-pixel ((,c :foreground ,border)))
+    `(window-divider-last-pixel ((,c :foreground ,border)))
+
+;;;; Header line
+    `(header-line ((,c :background ,bg-alt :foreground ,fg-main))))
+  "Face specifications for Alabaster BG theme with background highlighting.")
+
+(alabaster-themes-theme alabaster-bg alabaster-bg-palette alabaster-bg-palette-overrides alabaster-bg-faces)
 
 (provide-theme 'alabaster-bg)
 ;;; alabaster-bg-theme.el ends here

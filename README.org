@@ -53,7 +53,7 @@ To support modern Emacs workflows, we made pragmatic compromises:
 
 2. *Package Support*: Original had ~40 faces for core syntax only. We provide 506 faces supporting 30+ packages (Magit, Org, Dired, etc.) for a consistent UI experience.
 
-3. *Keywords in Some Variants*: 
+3. *Keywords in Some Variants*:
    - =alabaster= and =alabaster-dark=: Keywords use =fg-main= (black/white) - compliant
    - =alabaster-bg=: Comments use yellow instead of red - partially divergent
    - =alabaster-mono= and =alabaster-dark-mono=: Everything monochrome except errors - most compliant
@@ -72,13 +72,13 @@ This is a pragmatic evolution that preserves Alabaster's color philosophy for co
 
 The package includes five theme variants:
 
-| Theme | Description | Background Mode |
-|-------+-------------+-----------------|
-| =alabaster= | Light theme with foreground highlighting | light |
-| =alabaster-bg= | Light theme with background highlighting | light |
-| =alabaster-dark= | Dark theme with foreground highlighting | dark |
-| =alabaster-mono= | Light monochromatic theme | light |
-| =alabaster-dark-mono= | Dark monochromatic theme | dark |
+| Theme                 | Description                              | Background Mode |
+|-----------------------+------------------------------------------+-----------------|
+| =alabaster=           | Light theme with foreground highlighting | light           |
+| =alabaster-bg=        | Light theme with background highlighting | light           |
+| =alabaster-dark=      | Dark theme with foreground highlighting  | dark            |
+| =alabaster-mono=      | Light monochromatic theme                | light           |
+| =alabaster-dark-mono= | Dark monochromatic theme                 | dark            |
 
 ** Foreground vs Background Highlighting
 
