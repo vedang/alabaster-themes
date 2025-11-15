@@ -280,7 +280,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 ** Commands
 
 - =alabaster-themes-select= : Select theme
-- =alabaster-themes-load-random= : Load random theme
 - =alabaster-themes-rotate= : Rotate through themes
 - =alabaster-themes-list-colors= : Preview theme palette
 - =alabaster-themes-list-colors-current= : Preview current theme palette

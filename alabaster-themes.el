@@ -942,38 +942,6 @@ is ignored in this scenario."
 
 ;;;; Load a theme at random
 
-(defun alabaster-themes--minus-current (&optional variant)
-  "Return list of Alabaster themes minus the current one.
-VARIANT is either `light' or `dark', which stand for
-`alabaster-themes-light-themes' and `alabaster-themes-dark-themes',
-respectively.  Else check against the return value of
-`alabaster-themes--list-known-themes'."
-  (let* ((list (when variant
-                 (if (eq variant 'dark)
-                     alabaster-themes-dark-themes
-                   alabaster-themes-light-themes)))
-         (sequence (or list (alabaster-themes--list-known-themes)))
-         (themes (copy-sequence sequence)))
-    (delete (alabaster-themes--current-theme) themes)))
-
-;;;###autoload
-(defun alabaster-themes-load-random (&optional variant)
-  "Load an Alabaster theme at random, excluding the current one.
-
-With optional VARIANT as a prefix argument, prompt to limit the
-set of themes to either dark or light variants.
-
-Run `alabaster-themes-post-load-hook' after loading the theme.
-
-When called from Lisp, VARIANT is either the `dark' or `light'
-symbol."
-  (interactive (list (when current-prefix-arg (alabaster-themes--choose-subset))))
-  (let* ((themes (alabaster-themes--minus-current variant))
-         (n (random (length themes)))
-         (pick (nth n themes))
-         (loaded (if (null pick) (car themes) pick)))
-    (alabaster-themes-load-theme loaded)
-    (message "Loaded `%s'" loaded)))
 
 ;;;; Rotate through a list of themes
 
