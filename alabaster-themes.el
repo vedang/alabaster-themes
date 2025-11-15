@@ -945,39 +945,6 @@ is ignored in this scenario."
 
 ;;;; Rotate through a list of themes
 
-(defun alabaster-themes--rotate (themes)
-  "Rotate THEMES rightward such that the car is moved to the end."
-  (if (proper-list-p themes)
-      (let* ((index (seq-position themes (alabaster-themes--current-theme)))
-             (offset (1+ index)))
-        (append (nthcdr offset themes) (take offset themes)))
-    (error "The `%s' is not a list" themes)))
-
-(defun alabaster-themes--rotate-p (themes)
-  "Return a new theme among THEMES if it is possible to rotate to it."
-  (if-let* ((new-theme (car (alabaster-themes--rotate themes))))
-      (if (eq new-theme (alabaster-themes--current-theme))
-          (car (alabaster-themes--rotate-p (alabaster-themes--rotate themes)))
-        new-theme)
-    (error "Cannot determine a theme among `%s'" themes)))
-
-;;;###autoload
-(defun alabaster-themes-rotate (themes)
-  "Rotate to the next theme among THEMES.
-When called interactively THEMES is the value of `alabaster-themes-to-rotate'.
-
-If the current theme is already the next in line, then move to the one
-after.  Perform the rotation rightwards, such that the first element in
-the list becomes the last.  Do not modify THEMES in the process."
-  (interactive (list alabaster-themes-to-rotate))
-  (unless (proper-list-p themes)
-    "This is not a list of themes: `%s'" themes)
-  (let ((candidate (alabaster-themes--rotate-p themes)))
-    (if (memq candidate alabaster-themes-collection)
-        (progn
-          (message "Rotating to `%s'" (propertize (symbol-name candidate) 'face 'success))
-          (alabaster-themes-load-theme candidate))
-      (user-error "`%s' is not part of the Alabaster collection" candidate))))
 
 
 ;;;; Preview a theme palette
