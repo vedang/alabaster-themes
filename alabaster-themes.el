@@ -1010,8 +1010,6 @@ color mappings instead of the complete palette."
         (alabaster-themes-preview-mode)))
     (pop-to-buffer buffer)))
 
-(defalias 'alabaster-themes-preview-colors 'alabaster-themes-list-colors
-  "Alias for `alabaster-themes-list-colors'.")
 
 ;;;###autoload
 
