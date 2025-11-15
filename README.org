@@ -274,7 +274,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 - =alabaster-themes-variable-pitch-ui= : Use proportional fonts in UI
 - =alabaster-themes-common-palette-overrides= : Global palette overrides
 - =alabaster-themes-post-load-hook= : Hook run after loading theme
-- =alabaster-themes-disable-other-themes= : Disable other themes when loading
 
 ** Commands
 

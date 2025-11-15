@@ -73,18 +73,6 @@ This is used by the commands `alabaster-themes-select' and
   :type 'hook
   :group 'alabaster-themes)
 
-(defcustom alabaster-themes-disable-other-themes t
-  "Disable all other themes when loading an Alabaster theme.
-
-When the value is non-nil, the commands will disable all other
-themes while loading the specified Alabaster theme.  This is done
-to ensure that Emacs does not blend two or more themes: such
-blends lead to awkward results that undermine the work of the designer.
-
-When the value is nil, the commands will only disable other themes
-within the Alabaster collection."
-  :group 'alabaster-themes
-  :type 'boolean)
 
 (defcustom alabaster-themes-common-palette-overrides nil
   "Set palette overrides for all the Alabaster themes.
@@ -899,16 +887,13 @@ When VARIANT is nil, all Alabaster themes are candidates for completion."
       'alabaster-themes--select-theme-history))))
 
 (defun alabaster-themes--disable-themes ()
-  "Disable themes per `alabaster-themes-disable-other-themes'."
-  (mapc #'disable-theme
-        (if alabaster-themes-disable-other-themes
-            custom-enabled-themes
-          (alabaster-themes--list-known-themes))))
+  "Disable all other themes when loading an Alabaster theme."
+  (mapc #'disable-theme custom-enabled-themes))
 
 (defun alabaster-themes-load-theme (theme)
-  "Load THEME while disabling other Alabaster themes.
-Which themes are disabled is determined by the user option
-`alabaster-themes-disable-other-themes'.
+  "Load THEME while disabling all other themes.
+This ensures that Emacs does not blend two or more themes: such
+blends lead to awkward results that undermine the work of the designer.
 
 Run the `alabaster-themes-post-load-hook' as the final step after
 loading the THEME.

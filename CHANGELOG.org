@@ -12,6 +12,7 @@
 - Removed ~alabaster-themes-rotate~ command and ~alabaster-themes-to-rotate~ variable to streamline package functionality
 - Removed ~alabaster-themes-list-colors-current~ command and ~alabaster-themes-preview-colors-current~ alias to streamline package functionality
 - Removed ~alabaster-themes-preview-colors~ alias to streamline package functionality
+- Removed ~alabaster-themes-disable-other-themes~ option and made disabling all other themes the default behavior
 
 ** New Features
 - Added ~alabaster-themes-no-bold~ customization option to disable bold font variations
