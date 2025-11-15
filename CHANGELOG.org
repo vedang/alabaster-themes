@@ -10,6 +10,7 @@
 - Removed ~alabaster-themes-toggle~ command and ~alabaster-themes-to-toggle~ variable to streamline package functionality
 - Removed ~alabaster-themes-load-random~ command to streamline package functionality
 - Removed ~alabaster-themes-rotate~ command and ~alabaster-themes-to-rotate~ variable to streamline package functionality
+- Removed ~alabaster-themes-list-colors-current~ command and ~alabaster-themes-preview-colors-current~ alias to streamline package functionality
 
 ** New Features
 - Added ~alabaster-themes-no-bold~ customization option to disable bold font variations
@@ -37,7 +38,6 @@ This release represents a complete rewrite of the alabaster-emacs package to ali
 *** User Commands
 - ~alabaster-themes-select~ - Interactive theme selection with annotations
 - ~alabaster-themes-list-colors~ - Preview palette in tabulated list
-- ~alabaster-themes-list-colors-current~ - Preview current theme palette
 
 *** Customization Options
 - ~alabaster-themes-headings~ - Per-level heading styles with variable-pitch, weights, heights

@@ -1014,13 +1014,6 @@ color mappings instead of the complete palette."
   "Alias for `alabaster-themes-list-colors'.")
 
 ;;;###autoload
-(defun alabaster-themes-list-colors-current (&optional mappings)
-  "Like `alabaster-themes-list-colors' with optional MAPPINGS for the current theme."
-  (interactive "P")
-  (alabaster-themes-list-colors (alabaster-themes--current-theme) mappings))
-
-(defalias 'alabaster-themes-preview-colors-current 'alabaster-themes-list-colors-current
-  "Alias for `alabaster-themes-list-colors-current'.")
 
 (define-derived-mode alabaster-themes-preview-mode tabulated-list-mode "Alabaster palette"
   "Major mode to display a Alabaster themes palette."

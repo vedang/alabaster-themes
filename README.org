@@ -280,7 +280,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 
 - =alabaster-themes-select= : Select theme
 - =alabaster-themes-list-colors= : Preview theme palette
-- =alabaster-themes-list-colors-current= : Preview current theme palette
 
 ** Palette Colors
 
