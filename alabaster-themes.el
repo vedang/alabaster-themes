@@ -939,36 +939,6 @@ is ignored in this scenario."
 
 ;;;; Theme management commands
 
-(defun alabaster-themes--toggle-theme-p ()
-  "Return non-nil if `alabaster-themes-to-toggle' are valid."
-  (condition-case nil
-      (dolist (theme alabaster-themes-to-toggle)
-        (or (memq theme alabaster-themes-collection)
-            (memq theme (alabaster-themes--list-known-themes))
-            (error "`%s' is not part of `alabaster-themes-collection'" theme)))
-    (error nil)
-    (:success alabaster-themes-to-toggle)))
-
-;;;###autoload
-(defun alabaster-themes-toggle ()
-  "Toggle between the two `alabaster-themes-to-toggle'.
-If `alabaster-themes-to-toggle' does not specify two Alabaster themes, inform
-the user about it while prompting with completion for a theme
-among our collection (this is practically the same as the
-`alabaster-themes-select' command).
-
-Run `alabaster-themes-post-load-hook' after loading the theme."
-  (interactive)
-  (if-let* ((themes (alabaster-themes--toggle-theme-p))
-            (one (car themes))
-            (two (cadr themes)))
-      (if (eq (car custom-enabled-themes) one)
-          (alabaster-themes-load-theme two)
-        (alabaster-themes-load-theme one))
-    (alabaster-themes-load-theme
-     (alabaster-themes--select-prompt
-      (concat "Set two `alabaster-themes-to-toggle'; "
-              "switching to theme selection for now: ")))))
 
 ;;;; Load a theme at random
 

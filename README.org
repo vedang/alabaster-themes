@@ -273,7 +273,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 - =alabaster-themes-mixed-fonts= : Use fixed-pitch in spacing-sensitive constructs
 - =alabaster-themes-variable-pitch-ui= : Use proportional fonts in UI
 - =alabaster-themes-common-palette-overrides= : Global palette overrides
-- =alabaster-themes-to-toggle= : Themes to toggle between
 - =alabaster-themes-to-rotate= : Themes to rotate through
 - =alabaster-themes-post-load-hook= : Hook run after loading theme
 - =alabaster-themes-disable-other-themes= : Disable other themes when loading
@@ -281,7 +280,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 ** Commands
 
 - =alabaster-themes-select= : Select theme
-- =alabaster-themes-toggle= : Toggle between two themes
 - =alabaster-themes-load-random= : Load random theme
 - =alabaster-themes-rotate= : Rotate through themes
 - =alabaster-themes-list-colors= : Preview theme palette
