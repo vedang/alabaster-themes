@@ -935,39 +935,7 @@ is ignored in this scenario."
   (interactive (list (alabaster-themes--select-prompt nil current-prefix-arg)))
   (alabaster-themes-load-theme theme))
 
-;;;###autoload
-(defun alabaster-themes-select-light (theme)
-  "Load a light Alabaster THEME.
-Run `alabaster-themes-post-load-hook' after loading the theme.
 
-Also see `alabaster-themes-select-dark'.
-
-This command is the same as `alabaster-themes-select' except it only
-prompts for light themes when called interactively.  Calling it
-from Lisp behaves the same as `alabaster-themes-select' for the THEME
-argument, meaning that it loads the Alabaster THEME regardless of
-whether it is light or dark."
-  (interactive
-   (list
-    (alabaster-themes--select-prompt "Select light Alabaster theme: " 'light)))
-  (alabaster-themes-load-theme theme))
-
-;;;###autoload
-(defun alabaster-themes-select-dark (theme)
-  "Load a dark Alabaster THEME.
-Run `alabaster-themes-post-load-hook' after loading the theme.
-
-Also see `alabaster-themes-select-light'.
-
-This command is the same as `alabaster-themes-select' except it only
-prompts for dark themes when called interactively.  Calling it
-from Lisp behaves the same as `alabaster-themes-select' for the THEME
-argument, meaning that it loads the Alabaster THEME regardless of
-whether it is light or dark."
-  (interactive
-   (list
-    (alabaster-themes--select-prompt "Select dark Alabaster theme: " 'dark)))
-  (alabaster-themes-load-theme theme))
 
 ;;;; Theme management commands
 

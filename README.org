@@ -281,8 +281,6 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 ** Commands
 
 - =alabaster-themes-select= : Select theme
-- =alabaster-themes-select-light= : Select light theme
-- =alabaster-themes-select-dark= : Select dark theme
 - =alabaster-themes-toggle= : Toggle between two themes
 - =alabaster-themes-load-random= : Load random theme
 - =alabaster-themes-rotate= : Rotate through themes

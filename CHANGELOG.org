@@ -4,6 +4,10 @@
 
 * Unreleased
 
+** Removed
+- Removed ~alabaster-themes-select-light~ command to streamline package functionality
+- Removed ~alabaster-themes-select-dark~ command to streamline package functionality
+
 ** New Features
 - Added ~alabaster-themes-no-bold~ customization option to disable bold font variations
 - Theme now respects original Alabaster philosophy when ~alabaster-themes-no-bold~ is set to t
@@ -29,8 +33,6 @@ This release represents a complete rewrite of the alabaster-emacs package to ali
 
 *** User Commands
 - ~alabaster-themes-select~ - Interactive theme selection with annotations
-- ~alabaster-themes-select-light~ - Select from light themes only
-- ~alabaster-themes-select-dark~ - Select from dark themes only
 - ~alabaster-themes-toggle~ - Toggle between two themes
 - ~alabaster-themes-load-random~ - Load random theme
 - ~alabaster-themes-rotate~ - Rotate through custom list
