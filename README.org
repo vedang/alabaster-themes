@@ -56,7 +56,7 @@ To support modern Emacs workflows, we made pragmatic compromises:
 
 1. *Font Variations*: The original avoids bold/italic entirely. We use them sparingly for UI emphasis (headings, errors, Magit headers) - 95 of 506 faces inherit bold/italic.
 
-2. *Package Support*: Original had ~40 faces for core syntax only. We provide 506 faces supporting 30+ packages (Magit, Org, Dired, etc.) for a consistent UI experience.
+2. *Package Support*: We provide 506 faces supporting 30+ packages (Magit, Org, Dired, etc.) for a consistent UI experience.
 
 3. *Keywords in Some Variants*:
    - =alabaster= and =alabaster-dark=: Keywords use =fg-main= (black/white) - compliant
@@ -113,86 +113,23 @@ M-x package-install RET alabaster-themes RET
 2. Add the directory to your =load-path=
 3. Load the main file: =(require 'alabaster-themes)=
 
+** Using use-package
+
+If you use [[https://github.com/jwiegley/use-package][use-package]], you can install and load the theme as follows:
+
+#+begin_src emacs-lisp
+  (use-package alabaster-themes
+    :ensure t
+    :config
+    ;; Load the light theme
+    (load-theme 'alabaster t)
+    ;; Interactively select a theme
+    :commands (alabaster-themes-select))
+#+end_src
+
 * Usage
 
-** Interactive Commands
-
-All commands are autoloaded and available after installing the package.
-
-*** Theme Selection
-
-- =alabaster-themes-select= : Select any Alabaster theme with completion. With a prefix argument, you can limit the selection to light or dark variants.
-
-*** Palette Preview
-
-- =alabaster-themes-list-colors= : Preview the color palette of any theme
-
-With a prefix argument, preview only the semantic color mappings.
-
-** Customization Options
-
-*** Heading Styles
-
-Control the appearance of headings (like in Org mode):
-
-#+begin_src emacs-lisp
-(setq alabaster-themes-headings
-      '((1 light variable-pitch 1.5)  ; Level 1: light weight, variable-pitch, 1.5x height
-        (2 regular 1.3)               ; Level 2: regular weight, 1.3x height
-        (3 1.1)                       ; Level 3: 1.1x height
-        (agenda-date 1.3)             ; Org agenda dates
-        (agenda-structure variable-pitch light 1.8)  ; Org agenda structure
-        (t variable-pitch)))          ; Default for all other levels
-#+end_src
-
-Properties you can set:
-- =variable-pitch=: Use proportionally-spaced font
-- Weight symbols: =thin=, =ultralight=, =extralight=, =light=, =semilight=, =regular=, =medium=, =semibold=, =bold=, =extrabold=, =ultrabold=
-- Height: Floating-point number (e.g., 1.5) or =(height . FLOAT)=
-
-*** Font Options
-
-**Mixed Fonts**
-
-Enable inheritance from =fixed-pitch= in spacing-sensitive constructs (Org tables, code blocks):
-
-#+begin_src emacs-lisp
-(setq alabaster-themes-mixed-fonts t)
-#+end_src
-
-**Variable Pitch UI**
-
-Use proportional fonts in UI elements (mode line, header line, tab bar):
-
-#+begin_src emacs-lisp
-  (setq alabaster-themes-variable-pitch-ui t)
-#+end_src
-
-*** Palette Overrides
-
-**Common Overrides**
-
-Override colors across all Alabaster themes:
-
-#+begin_src emacs-lisp
-(setq alabaster-themes-common-palette-overrides
-      '((bg-main . "#FAFAFA")
-        (fg-main . "#111111")))
-#+end_src
-
-**Per-Theme Overrides**
-
-Override colors for a specific theme:
-
-#+begin_src emacs-lisp
-(setq alabaster-palette-overrides
-      '((cursor . "#FF0000")
-        (blue . "#0066CC")))
-#+end_src
-
-Available for all themes: =alabaster-palette-overrides=, =alabaster-bg-palette-overrides=, =alabaster-dark-palette-overrides=, =alabaster-mono-palette-overrides=, =alabaster-dark-mono-palette-overrides=
-
-*** Post-Load Hook
+** Post-Load Hook
 
 Run code after loading a theme:
 
@@ -204,7 +141,7 @@ Run code after loading a theme:
 
 * Package Support
 
-The themes provide comprehensive face coverage for popular packages:
+The themes provide face coverage for popular packages:
 
 - *Version Control*: Magit, diff-hl, git-gutter
 - *Completion*: Company, Corfu, Vertico, Orderless, Consult, Embark, Marginalia
@@ -216,26 +153,6 @@ The themes provide comprehensive face coverage for popular packages:
 - *UI*: All-the-icons, Custom
 - *Search*: Isearch, Consult
 - *Dired*: Dired, Diredfl, Image-dired
-
-* Troubleshooting
-
-** Colors look wrong or incomplete
-
-- Ensure the theme is loaded properly: =(load-theme 'alabaster t)=
-- Check for conflicting themes: =(custom-enabled-themes)=
-- Try disabling other themes: =(mapc #'disable-theme (custom-enabled-themes))=
-
-** Customizations not applying
-
-- Use =M-x customize-group RET alabaster-themes RET= to set options
-- Or set variables before loading the theme
-- Some changes require reloading the theme
-
-** Package faces not themed
-
-- Ensure the package is loaded after the theme
-- Some packages require restarting Emacs after theme changes
-- Check if the package face is in the theme: =M-x describe-face RET <face-name> RET=
 
 * Contributing
 
@@ -264,29 +181,3 @@ MIT License - same as the original Alabaster theme by Nikita Prokopov.
 
 - [[https://github.com/tonsky/vscode-theme-alabaster][VSCode Theme Alabaster]]
 - [[https://github.com/tonsky/intellij-alabaster][IntelliJ Alabaster]]
-
-* Variables and Functions Index
-
-** Customization Variables
-
-- =alabaster-themes-headings= : Per-level heading styles
-- =alabaster-themes-mixed-fonts= : Use fixed-pitch in spacing-sensitive constructs
-- =alabaster-themes-variable-pitch-ui= : Use proportional fonts in UI
-- =alabaster-themes-common-palette-overrides= : Global palette overrides
-- =alabaster-themes-post-load-hook= : Hook run after loading theme
-
-** Commands
-
-- =alabaster-themes-select= : Select theme
-- =alabaster-themes-list-colors= : Preview theme palette
-
-** Palette Colors
-
-Common palette variables available for customization:
-
-- Basic: =bg-main=, =fg-main=, =bg-dim=, =fg-dim=, =bg-alt=, =fg-alt=
-- Hues: =red=, =green=, =yellow=, =blue=, =magenta=
-- Background hues: =bg-red-subtle=, =bg-green-subtle=, etc.
-- Diffs: =bg-added=, =bg-removed=, =bg-changed= and variants
-- Special: =bg-mode-line=, =bg-region=, =cursor=, =border=
-- Mappings: =err=, =warning=, =info=, =link=, =builtin=, =comment=, =string=, etc.
