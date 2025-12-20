@@ -1,4 +1,4 @@
-;;; alabaster-theme.el --- Alabaster themes collection -*- lexical-binding:t -*-
+;;; alabaster-themes.el --- Alabaster themes collection -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025 Nikita Prokopov
 
@@ -817,10 +817,6 @@ instead of the default `alabaster-themes-faces'."
     (unless (file-equal-p dir (expand-file-name "themes/" data-directory))
       (add-to-list 'custom-theme-load-path dir))))
 
-(provide 'alabaster-theme)
-;;; alabaster-theme.el ends here
-(provide 'alabaster-themes)
-
 ;;;; Theme selection commands
 
 (defun alabaster-themes--annotate-theme (theme)
@@ -1220,3 +1216,6 @@ This includes the mode line, header line, tab bar, and tab line."
 Returns bold inheritance unless `alabaster-themes-no-bold' is non-nil."
   (unless alabaster-themes-no-bold
     (list :inherit 'bold)))
+
+(provide 'alabaster-themes)
+;;; alabaster-themes.el ends here

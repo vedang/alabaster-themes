@@ -34,6 +34,8 @@
 
 ;;; Code:
 
+(require 'alabaster-themes)
+
 ;;;###theme-autoload
 (deftheme alabaster-dark-mono
   "Minimal dark theme with monochromatic highlighting."

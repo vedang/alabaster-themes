@@ -34,6 +34,8 @@
 
 ;;; Code:
 
+(require 'alabaster-themes)
+
 ;;;###theme-autoload
 (deftheme alabaster
   "Minimal light theme with foreground highlighting."
