@@ -804,8 +804,7 @@ instead of the default `alabaster-themes-faces'."
     `(gnus-summary-normal-read ((,c :inherit gnus-summary-high-read)))
     `(gnus-summary-normal-ticked ((,c :inherit gnus-summary-high-ticked)))
     `(gnus-summary-normal-unread ((,c :inherit gnus-summary-high-unread)))
-    `(gnus-summary-selected ((,c :inherit alabaster-themes-mark-select)))
-    )
+    `(gnus-summary-selected ((,c :inherit alabaster-themes-mark-select))))
   "Face specifications for Alabaster themes.")
 
 (defvar alabaster-themes-custom-variables '()
@@ -1190,8 +1189,10 @@ something like the command `variable-pitch-mode'."
   :type 'boolean)
 
 (defcustom alabaster-themes-no-bold nil
-  "When non-nil, remove bold weight from faces to match original Alabaster philosophy.
-The original Alabaster theme avoids font variations entirely."
+  "When non-nil, remove bold weight from faces.
+
+This matches the original Alabaster philosophy, which avoids font
+variations entirely."
   :group 'alabaster-themes
   :type 'boolean)
 
