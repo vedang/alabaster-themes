@@ -11,19 +11,19 @@ A collection of minimal light and dark themes for GNU Emacs based on the origina
 
 * Screenshots
 
-#+CAPTION: alabaster - Light theme with foreground highlighting
+alabaster - Light theme with foreground highlighting
 [[file:images/alabaster.png]]
 
-#+CAPTION: alabaster-bg - Light theme with background highlighting
+alabaster-bg - Light theme with background highlighting
 [[file:images/alabaster-bg.png]]
 
-#+CAPTION: alabaster-dark - Dark theme with foreground highlighting
+alabaster-dark - Dark theme with foreground highlighting
 [[file:images/alabaster-dark.png]]
 
-#+CAPTION: alabaster-mono - Light monochromatic theme
+alabaster-mono - Light monochromatic theme
 [[file:images/alabaster-mono.png]]
 
-#+CAPTION: alabaster-dark-mono - Dark monochromatic theme
+alabaster-dark-mono - Dark monochromatic theme
 [[file:images/alabaster-dark-mono.png]]
 
 * Overview
