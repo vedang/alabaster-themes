@@ -5,7 +5,7 @@
 ;; Author: Nikita Prokopov
 ;; Maintainer: Vedang Manerikar
 ;; URL: https://github.com/vedang/alabaster-themes
-;; Version: 1.0.1
+;; Version: 1.1.0
 ;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: faces, theme, minimal
 

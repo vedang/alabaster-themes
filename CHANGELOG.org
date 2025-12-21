@@ -2,7 +2,7 @@
 #+AUTHOR: Vedang Manerikar
 #+BASED_ON: Alabaster theme by Nikita Prokopov
 
-* Unreleased
+* Version 1.1.0 (2025-12-21)
 
 ** Removed
 - Removed ~alabaster-themes-select-light~ command to streamline package functionality
