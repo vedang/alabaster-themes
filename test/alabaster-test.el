@@ -7,7 +7,7 @@
 
 (require 'buttercup)
 (require 'alabaster-themes)
-(require 'alabaster-theme)
+(require 'alabaster-themes-light-theme)
 
 (describe "Alabaster Theme Package"
 
@@ -17,8 +17,8 @@
     (add-to-list 'custom-theme-load-path default-directory))
 
   (describe "Package Loading"
-    (it "should load alabaster-theme without errors"
-      (expect (require 'alabaster-theme) :not :to-throw))
+    (it "should load alabaster-themes-light-theme without errors"
+      (expect (require 'alabaster-themes-light-theme) :not :to-throw))
 
     (it "should provide customization group"
       (expect (get 'alabaster-themes 'group-documentation) :to-be-truthy)))
@@ -41,12 +41,12 @@
       (mapc #'disable-theme custom-enabled-themes))
 
     (it "should load themes with alabaster-themes-load-theme"
-      (expect (alabaster-themes-load-theme 'alabaster) :not :to-throw)
-      (expect custom-enabled-themes :to-contain 'alabaster))
+      (expect (alabaster-themes-load-theme 'alabaster-themes-light) :not :to-throw)
+      (expect custom-enabled-themes :to-contain 'alabaster-themes-light))
 
     (it "should accept a theme list for rotation"
       ;; Test that rotate accepts the themes parameter (actual rotation tested interactively)
-      (let ((themes '(alabaster alabaster-dark alabaster-mono)))
+      (let ((themes '(alabaster-themes-light alabaster-themes-dark alabaster-themes-light-mono)))
         (expect (proper-list-p themes) :to-be-truthy)
         (expect (seq-every-p (lambda (th) (memq th alabaster-themes-collection)) themes) :to-be-truthy)))
 
@@ -55,41 +55,41 @@
 
   (describe "Theme Palettes"
     (it "should define alabaster palette with correct colors"
-      (expect (boundp 'alabaster-palette) :to-be-truthy)
-      (let ((palette (symbol-value 'alabaster-palette)))
+      (expect (boundp 'alabaster-themes-light-palette) :to-be-truthy)
+      (let ((palette (symbol-value 'alabaster-themes-light-palette)))
         (expect (assoc 'string palette) :to-be-truthy)
         (expect (assoc 'comment palette) :to-be-truthy)
         (expect (assoc 'constant palette) :to-be-truthy)
         (expect (assoc 'fnname palette) :to-be-truthy)))
 
     (it "should define alabaster-dark palette"
-      (require 'alabaster-dark-theme)
-      (expect (boundp 'alabaster-dark-palette) :to-be-truthy))
+      (require 'alabaster-themes-dark-theme)
+      (expect (boundp 'alabaster-themes-dark-palette) :to-be-truthy))
 
-    (it "should define alabaster-bg palette"
-      (require 'alabaster-bg-theme)
-      (expect (boundp 'alabaster-bg-palette) :to-be-truthy))
+    (it "should define alabaster-themes-light-bg palette"
+      (require 'alabaster-themes-light-bg-theme)
+      (expect (boundp 'alabaster-themes-light-bg-palette) :to-be-truthy))
 
-    (it "should define alabaster-mono palette"
-      (require 'alabaster-mono-theme)
-      (expect (boundp 'alabaster-mono-palette) :to-be-truthy))
+    (it "should define alabaster-themes-light-mono palette"
+      (require 'alabaster-themes-light-mono-theme)
+      (expect (boundp 'alabaster-themes-light-mono-palette) :to-be-truthy))
 
-    (it "should define alabaster-dark-mono palette"
-      (require 'alabaster-dark-mono-theme)
-      (expect (boundp 'alabaster-dark-mono-palette) :to-be-truthy)))
+    (it "should define alabaster-themes-dark-mono palette"
+      (require 'alabaster-themes-dark-mono-theme)
+      (expect (boundp 'alabaster-themes-dark-mono-palette) :to-be-truthy)))
 
   (describe "Theme Properties"
     (it "should have correct background-mode for light themes"
-      (load-theme 'alabaster t)
-      (expect (get 'alabaster 'theme-feature) :to-be-truthy))
+      (load-theme 'alabaster-themes-light t)
+      (expect (get 'alabaster-themes-light 'theme-feature) :to-be-truthy))
 
     (it "should have correct background-mode for dark themes"
-      (load-theme 'alabaster-dark t)
-      (expect (get 'alabaster-dark 'theme-feature) :to-be-truthy)))
+      (load-theme 'alabaster-themes-dark t)
+      (expect (get 'alabaster-themes-dark 'theme-feature) :to-be-truthy)))
 
   (describe "Face Coverage"
     (it "should define basic font-lock faces"
-      (load-theme 'alabaster t)
+      (load-theme 'alabaster-themes-light t)
       (expect (facep 'font-lock-string-face) :to-be-truthy)
       (expect (facep 'font-lock-constant-face) :to-be-truthy)
       (expect (facep 'font-lock-comment-face) :to-be-truthy)
@@ -110,7 +110,7 @@
 
     (it "should apply bold by default"
       (setq alabaster-themes-no-bold nil)
-      (load-theme 'alabaster t)
+      (load-theme 'alabaster-themes-light t)
       (let ((helper-result (alabaster-themes--bold)))
         (expect helper-result :to-equal '(:inherit bold))))
 
