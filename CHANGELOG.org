@@ -2,6 +2,18 @@
 #+AUTHOR: Vedang Manerikar
 #+BASED_ON: Alabaster theme by Nikita Prokopov
 
+* Version 2.1.0 (2025-12-24)
+
+** Fixed
+- Updated theme name references in main package file to use new MELPA names
+- Fixed theme collections (`alabaster-themes-light-themes` and `alabaster-themes-dark-themes`)
+- Updated test file to use correct theme names
+- Added `ignore` declaration in theme macro to suppress unused variable warnings
+
+** Internal
+- Clean byte compilation with only expected unused variable warnings eliminated
+- All internal theme references now consistently use new naming convention
+
 * Version 2.0.0 (2025-12-24)
 
 ** Breaking Changes - Major Version Bump
