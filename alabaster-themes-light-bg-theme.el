@@ -53,8 +53,8 @@
   :kind 'color-scheme
   :family 'alabaster)
 
-(defconst alabaster-bg-palette
-  '(
+(eval-and-compile (defconst alabaster-themes-light-bg-palette
+   '(
 ;;; Basic values
 
     (bg-main     "#ffffff")
@@ -195,18 +195,18 @@
     (bg-term-blue            blue)
     (bg-term-magenta         magenta)
     (bg-term-cyan            blue)
-    (bg-term-white           "gray65"))
-  "The `alabaster-bg' palette.")
+    (bg-term-white           "gray65")))
+  "The `alabaster-themes-light-bg' palette.")
 
-(defcustom alabaster-bg-palette-overrides nil
-  "Overrides for `alabaster-bg-palette'."
+(defcustom alabaster-themes-light-bg-palette-overrides nil
+  "Overrides for `alabaster-themes-light-bg-palette'."
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
 ;;; Face specifications for background highlighting
 
-(defvar alabaster-bg-faces
-  '(
+(eval-and-compile (defvar alabaster-bg-faces
+   '(
 ;;;; basic faces
     `(default ((,c :background ,bg-main :foreground ,fg-main)))
     `(cursor ((,c :background ,cursor)))
@@ -353,9 +353,9 @@
 
 ;;;; Header line
     `(header-line ((,c :background ,bg-alt :foreground ,fg-main))))
-  "Face specifications for Alabaster BG theme with background highlighting.")
+  "Face specifications for Alabaster light-bg theme with background highlighting."))
 
-(alabaster-themes-theme alabaster-themes-light-bg alabaster-bg-palette alabaster-bg-palette-overrides alabaster-bg-faces)
+(alabaster-themes-theme alabaster-themes-light-bg alabaster-themes-light-bg-palette alabaster-themes-light-bg-palette-overrides alabaster-bg-faces)
 
 (provide-theme 'alabaster-themes-light-bg)
 ;;; alabaster-themes-light-bg-theme.el ends here

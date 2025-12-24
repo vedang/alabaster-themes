@@ -49,8 +49,8 @@
   :kind 'color-scheme
   :family 'alabaster)
 
-(defconst alabaster-palette
-  '(
+(eval-and-compile (defconst alabaster-themes-light-palette
+   '(
 ;;; Basic values
 
     (bg-main     "#F7F7F7")
@@ -191,15 +191,15 @@
     (bg-term-blue            blue)
     (bg-term-magenta         magenta)
     (bg-term-cyan            blue)
-    (bg-term-white           "gray65"))
-  "The `alabaster' palette.")
+    (bg-term-white           "gray65")))
+  "The `alabaster-themes-light' palette.")
 
-(defcustom alabaster-palette-overrides nil
-  "Overrides for `alabaster-palette'."
+(defcustom alabaster-themes-light-palette-overrides nil
+  "Overrides for `alabaster-themes-light-palette'."
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
-(alabaster-themes-theme alabaster-themes-light alabaster-palette alabaster-palette-overrides)
+(alabaster-themes-theme alabaster-themes-light alabaster-themes-light-palette alabaster-themes-light-palette-overrides)
 
 (provide-theme 'alabaster-themes-light)
 ;;; alabaster-themes-light-theme.el ends here

@@ -49,8 +49,8 @@
   :kind 'color-scheme
   :family 'alabaster)
 
-(defconst alabaster-dark-mono-palette
-  '(
+(eval-and-compile (defconst alabaster-themes-dark-mono-palette
+   '(
 ;;; Basic values
 
     (bg-main     "#0E1415")
@@ -191,15 +191,15 @@
     (bg-term-blue            bg-main)
     (bg-term-magenta         bg-main)
     (bg-term-cyan            bg-main)
-    (bg-term-white           "gray65"))
-  "The `alabaster-dark-mono' palette.")
+    (bg-term-white           "gray65")))
+  "The `alabaster-themes-dark-mono' palette.")
 
-(defcustom alabaster-dark-mono-palette-overrides nil
-  "Overrides for `alabaster-dark-mono-palette'."
+(defcustom alabaster-themes-dark-mono-palette-overrides nil
+  "Overrides for `alabaster-themes-dark-mono-palette'."
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
-(alabaster-themes-theme alabaster-themes-dark-mono alabaster-dark-mono-palette alabaster-dark-mono-palette-overrides)
+(alabaster-themes-theme alabaster-themes-dark-mono alabaster-themes-dark-mono-palette alabaster-themes-dark-mono-palette-overrides)
 
 (provide-theme 'alabaster-themes-dark-mono)
 ;;; alabaster-themes-dark-mono-theme.el ends here
