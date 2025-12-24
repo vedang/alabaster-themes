@@ -1,4 +1,4 @@
-;;; alabaster-theme.el --- Alabaster light theme -*- lexical-binding:t -*-
+;;; alabaster-themes-light-theme.el --- Alabaster light theme -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025 Nikita Prokopov
 
@@ -7,37 +7,43 @@
 ;; URL: https://github.com/vedang/alabaster-themes
 ;; Version: 1.1.0
 ;; Package-Requires: ((emacs "28.1"))
+;; Local Variables:
+;; package-lint-main-file: "alabaster-themes.el"
+;; End:
 ;; Keywords: faces, theme, minimal
 
-;; Permission is hereby granted, free of charge, to any person obtaining a copy
-;; of this software and associated documentation files (the "Software"), to deal
-;; in the Software without restriction, including without limitation the rights
-;; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-;; copies of the Software, and to permit persons to whom the Software is
+;; Permission is hereby granted, free of charge, to any person
+;; obtaining a copy of this software and associated documentation
+;; files (the "Software"), to deal in the Software without
+;; restriction, including without limitation the rights to use, copy,
+;; modify, merge, publish, distribute, sublicense, and/or sell copies
+;; of the Software, and to permit persons to whom the Software is
 ;; furnished to do so, subject to the following conditions:
 
-;; The above copyright notice and this permission notice shall be included in all
-;; copies or substantial portions of the Software.
+;; The above copyright notice and this permission notice shall be
+;; included in all copies or substantial portions of the Software.
 
-;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-;; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-;; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-;; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+;; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+;; BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+;; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
 ;;; Commentary:
 ;;
-;; The `alabaster' theme is a minimal light theme with foreground highlighting.
-;; It maintains exact color fidelity to the original Sublime Text Alabaster scheme.
+;; The `alabaster-themes-light' theme is a minimal light theme with
+;; foreground highlighting. It maintains exact color fidelity to the
+;; original Sublime Text Alabaster scheme.
 
 ;;; Code:
 
 (require 'alabaster-themes)
 
 ;;;###theme-autoload
-(deftheme alabaster
+(deftheme alabaster-themes-light
   "Minimal light theme with foreground highlighting."
   :background-mode 'light
   :kind 'color-scheme
@@ -193,7 +199,7 @@
   :group 'alabaster-themes
   :type '(repeat (list symbol (choice symbol string))))
 
-(alabaster-themes-theme alabaster alabaster-palette alabaster-palette-overrides)
+(alabaster-themes-theme alabaster-themes-light alabaster-palette alabaster-palette-overrides)
 
-(provide-theme 'alabaster)
-;;; alabaster-theme.el ends here
+(provide-theme 'alabaster-themes-light)
+;;; alabaster-themes-light-theme.el ends here

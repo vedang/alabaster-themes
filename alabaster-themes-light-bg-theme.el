@@ -1,4 +1,4 @@
-;;; alabaster-bg-theme.el --- Alabaster BG light theme -*- lexical-binding:t -*-
+;;; alabaster-themes-light-bg-theme.el --- Alabaster BG light theme -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025 Nikita Prokopov
 
@@ -7,42 +7,47 @@
 ;; URL: https://github.com/vedang/alabaster-themes
 ;; Version: 1.1.0
 ;; Package-Requires: ((emacs "28.1"))
+;; Local Variables:
+;; package-lint-main-file: "alabaster-themes.el"
+;; End:
 ;; Keywords: faces, theme, minimal
 
-;; Permission is hereby granted, free of charge, to any person obtaining a copy
-;; of this software and associated documentation files (the "Software"), to deal
-;; in the Software without restriction, including without limitation the rights
-;; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-;; copies of the Software, and to permit persons to whom the Software is
+;; Permission is hereby granted, free of charge, to any person
+;; obtaining a copy of this software and associated documentation
+;; files (the "Software"), to deal in the Software without
+;; restriction, including without limitation the rights to use, copy,
+;; modify, merge, publish, distribute, sublicense, and/or sell copies
+;; of the Software, and to permit persons to whom the Software is
 ;; furnished to do so, subject to the following conditions:
 
-;; The above copyright notice and this permission notice shall be included in all
-;; copies or substantial portions of the Software.
+;; The above copyright notice and this permission notice shall be
+;; included in all copies or substantial portions of the Software.
 
-;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-;; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-;; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-;; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+;; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+;; BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+;; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
 ;;; Commentary:
 ;;
-;; The `alabaster-bg' theme is a minimal light theme with background
-;; highlighting. It uses subtle background colors to highlight syntax
-;; elements. Unlike other Alabaster themes, this variant requires
-;; custom face definitions because it uses background colors for
-;; syntax highlighting instead of foreground. The standard palette
-;; mappings work for foreground highlighting but cannot express the
-;; background-first approach needed here.
+;; The `alabaster-themes-light-bg' theme is a minimal light theme with
+;; background highlighting. It uses subtle background colors to
+;; highlight syntax elements. Unlike other Alabaster themes, this
+;; variant requires custom face definitions because it uses background
+;; colors for syntax highlighting instead of foreground. The standard
+;; palette mappings work for foreground highlighting but cannot
+;; express the background-first approach needed here.
 
 ;;; Code:
 
 (require 'alabaster-themes)
 
 ;;;###theme-autoload
-(deftheme alabaster-bg
+(deftheme alabaster-themes-light-bg
   "Minimal light theme with background highlighting."
   :background-mode 'light
   :kind 'color-scheme
@@ -350,7 +355,7 @@
     `(header-line ((,c :background ,bg-alt :foreground ,fg-main))))
   "Face specifications for Alabaster BG theme with background highlighting.")
 
-(alabaster-themes-theme alabaster-bg alabaster-bg-palette alabaster-bg-palette-overrides alabaster-bg-faces)
+(alabaster-themes-theme alabaster-themes-light-bg alabaster-bg-palette alabaster-bg-palette-overrides alabaster-bg-faces)
 
-(provide-theme 'alabaster-bg)
-;;; alabaster-bg-theme.el ends here
+(provide-theme 'alabaster-themes-light-bg)
+;;; alabaster-themes-light-bg-theme.el ends here
