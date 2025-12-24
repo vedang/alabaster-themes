@@ -6,7 +6,7 @@ echo "Running Alabaster Theme Tests..."
 echo "==============================="
 
 # Change to the correct directory
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 1
 
 # Ensure buttercup is available
 BUTTERCUP_PATH=$(emacs --batch --eval "(progn (package-initialize) (princ (file-name-directory (locate-library \"buttercup\"))))" 2>/dev/null)
