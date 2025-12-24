@@ -2,15 +2,17 @@
 #+AUTHOR: Vedang Manerikar
 #+BASED_ON: Alabaster theme by Nikita Prokopov
 
-* Version 1.2.0 (2025-12-24)
+* Version 2.0.0 (2025-12-24)
 
-** Breaking Changes
+** Breaking Changes - Major Version Bump
 - Renamed themes to follow MELPA naming convention:
   - `alabaster` → `alabaster-themes-light`
   - `alabaster-bg` → `alabaster-themes-light-bg`
   - `alabaster-dark` → `alabaster-themes-dark`
   - `alabaster-dark-mono` → `alabaster-themes-dark-mono`
   - `alabaster-mono` → `alabaster-themes-light-mono`
+- Updated internal palette variable names to match new theme names
+- Added `eval-and-compile` wrappers to fix byte compilation issues
 
 ** Changed
 - Renamed theme files to follow MELPA naming convention:
@@ -20,6 +22,7 @@
   - `alabaster-dark-mono-theme.el` → `alabaster-themes-dark-mono-theme.el`
   - `alabaster-mono-theme.el` → `alabaster-themes-light-mono-theme.el`
 - Added `package-lint-main-file` local variables to all theme files
+- All theme files now compile successfully with minimal warnings
 
 * Version 1.1.0 (2025-12-21)
 
