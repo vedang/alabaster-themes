@@ -33,11 +33,11 @@
 ;; for GNU Emacs based on the original Sublime Text Alabaster color scheme.
 ;;
 ;; Available themes:
-;; - alabaster (light, foreground highlighting)
-;; - alabaster-bg (light, background highlighting)
-;; - alabaster-dark (dark, foreground highlighting)
-;; - alabaster-mono (light, monochromatic)
-;; - alabaster-dark-mono (dark, monochromatic)
+;; - alabaster-themes-light (light, foreground highlighting)
+;; - alabaster-themes-light-bg (light, background highlighting)
+;; - alabaster-themes-dark (dark, foreground highlighting)
+;; - alabaster-themes-light-mono (light, monochromatic)
+;; - alabaster-themes-dark-mono (dark, monochromatic)
 
 ;;; Code:
 
@@ -52,14 +52,14 @@
   :tag "Alabaster Themes")
 
 (defconst alabaster-themes-light-themes
-  '(alabaster
-    alabaster-bg
-    alabaster-mono)
+  '(alabaster-themes-light
+    alabaster-themes-light-bg
+    alabaster-themes-light-mono)
   "List of symbols with the light Alabaster themes.")
 
 (defconst alabaster-themes-dark-themes
-  '(alabaster-dark
-    alabaster-dark-mono)
+  '(alabaster-themes-dark
+    alabaster-themes-dark-mono)
   "List of symbols with the dark Alabaster themes.")
 
 (defconst alabaster-themes-collection

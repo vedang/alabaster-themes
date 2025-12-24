@@ -24,7 +24,7 @@
       (expect (get 'alabaster-themes 'group-documentation) :to-be-truthy)))
 
   (describe "Theme Variants"
-    (let ((themes '(alabaster alabaster-bg alabaster-dark alabaster-mono alabaster-dark-mono)))
+    (let ((themes '(alabaster-themes-light alabaster-themes-light-bg alabaster-themes-dark alabaster-themes-light-mono alabaster-themes-dark-mono)))
 
       (it "should load all theme variants successfully"
         (dolist (theme themes)
