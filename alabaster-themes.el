@@ -191,6 +191,7 @@ instead of the default `alabaster-themes-faces'."
                         (list color
                               `(alabaster-themes--retrieve-palette-value ',color ,sym)))
                       colors))
+       (ignore c ,@colors)
        (custom-theme-set-faces ',name ,@(or (and faces (symbol-value faces)) alabaster-themes-faces))
        (custom-theme-set-variables ',name ,@alabaster-themes-custom-variables))))
 
