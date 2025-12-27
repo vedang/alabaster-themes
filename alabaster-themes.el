@@ -170,6 +170,25 @@ overrides."
         (alabaster-themes--palette-value theme))
     (user-error "No enabled Alabaster theme could be found")))
 
+;;; Faces and Variables
+
+(defgroup alabaster-themes-faces ()
+  "Faces defined by the Alabaster themes."
+  :group 'alabaster-themes
+  :prefix "alabaster-themes-"
+  :tag "Alabaster Themes Faces")
+
+(defvar alabaster-themes-custom-variables '()
+  "Custom variable specifications for Alabaster themes.")
+
+(defcustom alabaster-themes-no-bold nil
+  "When non-nil, remove bold weight from faces.
+
+This matches the original Alabaster philosophy, which avoids font
+variations entirely."
+  :group 'alabaster-themes
+  :type 'boolean)
+
 ;;; Theme definition macro
 
 (defmacro alabaster-themes-theme (name palette &optional overrides faces)
@@ -208,14 +227,6 @@ instead of the default `alabaster-themes-faces'."
                       colors))
        (ignore c ,@colors)
        ,@body)))
-
-;;; Faces and variables
-
-(defgroup alabaster-themes-faces ()
-  "Faces defined by the Alabaster themes."
-  :group 'alabaster-themes
-  :prefix "alabaster-themes-"
-  :tag "Alabaster Themes Faces")
 
 ;; Define face specs
 (defvar alabaster-themes-faces
@@ -808,9 +819,6 @@ instead of the default `alabaster-themes-faces'."
     `(gnus-summary-selected ((,c :inherit alabaster-themes-mark-select))))
   "Face specifications for Alabaster themes.")
 
-(defvar alabaster-themes-custom-variables '()
-  "Custom variable specifications for Alabaster themes.")
-
 ;;;###autoload
 (when load-file-name
   (let ((dir (file-name-directory load-file-name)))
@@ -1186,14 +1194,6 @@ This is done to allow spacing-sensitive constructs, such as Org
 tables and code blocks, to remain monospaced when users opt for a
 proportionately spaced font as their default or when they use
 something like the command `variable-pitch-mode'."
-  :group 'alabaster-themes
-  :type 'boolean)
-
-(defcustom alabaster-themes-no-bold nil
-  "When non-nil, remove bold weight from faces.
-
-This matches the original Alabaster philosophy, which avoids font
-variations entirely."
   :group 'alabaster-themes
   :type 'boolean)
 
