@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2025 Nikita Prokopov
 
-;; Author: Nikita Prokopov
-;; Maintainer: Vedang Manerikar
+;; Author: Nikita Prokopov <@tonsky>
+;; Maintainer: Vedang Manerikar <@vedang>
 ;; URL: https://github.com/vedang/alabaster-themes
 ;; Version: 2.1.0
 ;; Package-Requires: ((emacs "28.1"))
@@ -188,45 +188,6 @@ This matches the original Alabaster philosophy, which avoids font
 variations entirely."
   :group 'alabaster-themes
   :type 'boolean)
-
-;;; Theme definition macro
-
-(defmacro alabaster-themes-theme (name palette &optional overrides faces)
-  "Bind NAME's color PALETTE around face specs and variables.
-Face specifications are passed to `custom-theme-set-faces'.
-While variables are handled by `custom-theme-set-variables'.
-
-Optional OVERRIDES are appended to PALETTE, overriding
-corresponding entries.
-
-Optional FACES can be used to provide custom face specifications
-instead of the default `alabaster-themes-faces'."
-  (declare (indent 0))
-  (let ((sym (gensym))
-        (colors (mapcar #'car (symbol-value palette))))
-    `(let* ((c '((class color) (min-colors 256)))
-            (,sym (alabaster-themes--palette-value ',name ',overrides))
-            ,@(mapcar (lambda (color)
-                        (list color
-                              `(alabaster-themes--retrieve-palette-value ',color ,sym)))
-                      colors))
-       (ignore c ,@colors)
-       (custom-theme-set-faces ',name ,@(or (and faces (symbol-value faces)) alabaster-themes-faces))
-       (custom-theme-set-variables ',name ,@alabaster-themes-custom-variables))))
-
-(defmacro alabaster-themes-with-colors (&rest body)
-  "Evaluate BODY with colors from current palette bound."
-  (declare (indent 0))
-  (let* ((sym (gensym))
-         (colors (mapcar #'car (alabaster-themes--current-theme-palette))))
-    `(let* ((c '((class color) (min-colors 256)))
-            (,sym (alabaster-themes--current-theme-palette :overrides))
-            ,@(mapcar (lambda (color)
-                        (list color
-                              `(alabaster-themes--retrieve-palette-value ',color ,sym)))
-                      colors))
-       (ignore c ,@colors)
-       ,@body)))
 
 ;; Define face specs
 (defvar alabaster-themes-faces
@@ -818,6 +779,45 @@ instead of the default `alabaster-themes-faces'."
     `(gnus-summary-normal-unread ((,c :inherit gnus-summary-high-unread)))
     `(gnus-summary-selected ((,c :inherit alabaster-themes-mark-select))))
   "Face specifications for Alabaster themes.")
+;;; Theme definition macro
+
+(defmacro alabaster-themes-theme (name palette &optional overrides faces)
+  "Bind NAME's color PALETTE around face specs and variables.
+Face specifications are passed to `custom-theme-set-faces'.
+While variables are handled by `custom-theme-set-variables'.
+
+Optional OVERRIDES are appended to PALETTE, overriding
+corresponding entries.
+
+Optional FACES can be used to provide custom face specifications
+instead of the default `alabaster-themes-faces'."
+  (declare (indent 0))
+  (let ((sym (gensym))
+        (colors (mapcar #'car (symbol-value palette))))
+    `(let* ((c '((class color) (min-colors 256)))
+            (,sym (alabaster-themes--palette-value ',name ',overrides))
+            ,@(mapcar (lambda (color)
+                        (list color
+                              `(alabaster-themes--retrieve-palette-value ',color ,sym)))
+                      colors))
+       (ignore c ,@colors)
+       (custom-theme-set-faces ',name ,@(or (and faces (symbol-value faces)) alabaster-themes-faces))
+       (custom-theme-set-variables ',name ,@alabaster-themes-custom-variables))))
+
+(defmacro alabaster-themes-with-colors (&rest body)
+  "Evaluate BODY with colors from current palette bound."
+  (declare (indent 0))
+  (let* ((sym (gensym))
+         (colors (mapcar #'car (alabaster-themes--current-theme-palette))))
+    `(let* ((c '((class color) (min-colors 256)))
+            (,sym (alabaster-themes--current-theme-palette :overrides))
+            ,@(mapcar (lambda (color)
+                        (list color
+                              `(alabaster-themes--retrieve-palette-value ',color ,sym)))
+                      colors))
+       (ignore c ,@colors)
+       ,@body)))
+
 
 ;;;###autoload
 (when load-file-name

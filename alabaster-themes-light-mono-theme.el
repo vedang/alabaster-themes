@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2025 Nikita Prokopov
 
-;; Author: Nikita Prokopov
-;; Maintainer: Vedang Manerikar
+;; Author: Nikita Prokopov <@tonsky>
+;; Maintainer: Vedang Manerikar <@vedang>
 ;; URL: https://github.com/vedang/alabaster-themes
 ;; Version: 2.1.0
 ;; Package-Requires: ((emacs "28.1"))
