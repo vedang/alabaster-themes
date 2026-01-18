@@ -2,8 +2,6 @@
 #+AUTHOR: Vedang Manerikar
 #+EMAIL: ved.manerikar@gmail.com
 
-* Alabaster Themes for Emacs
-
 A collection of minimal light and dark themes for GNU Emacs based on the original Sublime Text Alabaster color scheme.
 
 - [[https://github.com/tonsky/sublime-scheme-alabaster][tonsky/sublime-scheme-alabaster]]
