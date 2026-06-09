@@ -195,7 +195,7 @@ variations entirely."
 ;;;; basic faces
     `(default ((,c :background ,bg-main :foreground ,fg-main)))
     `(cursor ((,c :background ,cursor)))
-    `(fringe ((,c :background ,bg-dim :foreground ,fg-dim)))
+    `(fringe ((,c :background ,bg-fringe :foreground ,fg-fringe)))
     `(line-number ((,c :inherit fringe)))
     `(line-number-current-line ((,c ,@(alabaster-themes--bold) :foreground ,fg-intense)))
     `(hl-line ((,c :background ,bg-hl-line)))
