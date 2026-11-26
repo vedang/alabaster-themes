@@ -51,6 +51,34 @@
   :prefix "alabaster-themes-"
   :tag "Alabaster Themes")
 
+(defface alabaster-themes-heading-1 '((t nil))
+  "Face for level-one headings."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-delete '((t nil))
+  "Face for items marked for deletion."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-select '((t nil))
+  "Face for selected items."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-other '((t nil))
+  "Face for items marked for other actions."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-error '((t nil))
+  "Face for underlining errors."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-info '((t nil))
+  "Face for underlining informational diagnostics."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-warning '((t nil))
+  "Face for underlining warnings."
+  :group 'alabaster-themes)
+
 (defconst alabaster-themes-light-themes
   '(alabaster-themes-light
     alabaster-themes-light-bg
@@ -645,9 +673,8 @@ variations entirely."
     `(rainbow-delimiters-depth-8-face ((,c :foreground ,rainbow-7)))
     `(rainbow-delimiters-depth-9-face ((,c :foreground ,rainbow-8)))
     `(rainbow-delimiters-mismatched-face ((,c :background ,bg-red-intense :foreground ,fg-intense)))
-    `(rainbow-delimiters-unmatched-face ((,c :inherit ,(if alabaster-themes-no-bold
-                                                           '(rainbow-delimiters-mismatched-face)
-                                                         '(bold rainbow-delimiters-mismatched-face)))))
+    `(rainbow-delimiters-unmatched-face
+      ((,c ,@(alabaster-themes--bold) :background ,bg-red-intense :foreground ,fg-intense)))
 
 ;;;; wgrep
     `(wgrep-delete-face ((,c :inherit warning)))
@@ -773,10 +800,10 @@ variations entirely."
     `(gnus-summary-low-read ((,c :inherit gnus-summary-high-read :height 0.9)))
     `(gnus-summary-low-ticked ((,c :inherit gnus-summary-high-ticked :height 0.9)))
     `(gnus-summary-low-unread ((,c :inherit gnus-summary-high-unread :height 0.9)))
-    `(gnus-summary-normal-ancient ((,c :inherit gnus-summary-high-ancient)))
-    `(gnus-summary-normal-read ((,c :inherit gnus-summary-high-read)))
-    `(gnus-summary-normal-ticked ((,c :inherit gnus-summary-high-ticked)))
-    `(gnus-summary-normal-unread ((,c :inherit gnus-summary-high-unread)))
+    `(gnus-summary-normal-ancient ((,c :foreground ,fg-alt)))
+    `(gnus-summary-normal-read ((,c :foreground ,fg-dim)))
+    `(gnus-summary-normal-ticked ((,c :foreground ,warning)))
+    `(gnus-summary-normal-unread ((,c ,@(alabaster-themes--bold) :foreground ,fg-intense)))
     `(gnus-summary-selected ((,c :inherit alabaster-themes-mark-select))))
   "Face specifications for Alabaster themes.")
 ;;; Theme definition macro

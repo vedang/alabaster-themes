@@ -99,10 +99,46 @@
       (expect (facep 'error) :to-be-truthy)
       (expect (facep 'warning) :to-be-truthy))
 
+    (it "should define helper faces used as inheritance targets"
+      (dolist (face '(alabaster-themes-heading-1
+                      alabaster-themes-mark-delete
+                      alabaster-themes-mark-select
+                      alabaster-themes-mark-other
+                      alabaster-themes-underline-error
+                      alabaster-themes-underline-info
+                      alabaster-themes-underline-warning))
+        (expect (facep face) :to-be-truthy)))
+
     (it "should define UI faces"
       (expect (facep 'mode-line) :to-be-truthy)
       (expect (facep 'mode-line-inactive) :to-be-truthy)
       (expect (facep 'default) :to-be-truthy)))
+
+  (describe "Gnus Summary Faces"
+    (it "should not make normal faces inherit from high-priority faces"
+      (load-theme 'alabaster-themes-dark t :no-enable)
+      (let ((settings (get 'alabaster-themes-dark 'theme-settings)))
+        ;; Inspect the generated specs: batch displays may not apply them.
+        (dolist (status '(ancient read ticked unread))
+          (let* ((normal (intern (format "gnus-summary-normal-%s" status)))
+                 (high (intern (format "gnus-summary-high-%s" status)))
+                 (spec (nth 3 (seq-find (lambda (setting)
+                                         (eq (cadr setting) normal))
+                                       settings))))
+            (expect spec :to-be-truthy)
+            (expect (plist-get (cdar spec) :inherit) :not :to-equal high))))))
+
+  (describe "Rainbow Delimiters Faces"
+    (it "should not make unmatched delimiters inherit from mismatched ones"
+      (load-theme 'alabaster-themes-dark t :no-enable)
+      (let* ((settings (get 'alabaster-themes-dark 'theme-settings))
+             (entry (seq-find (lambda (setting)
+                               (eq (cadr setting) 'rainbow-delimiters-unmatched-face))
+                             settings))
+             (attrs (cdar (nth 3 entry)))
+             (parents (ensure-list (plist-get attrs :inherit))))
+        (expect attrs :to-be-truthy)
+        (expect parents :not :to-contain 'rainbow-delimiters-mismatched-face))))
 
   (describe "Bold Customization"
     (before-each
