@@ -645,9 +645,8 @@ variations entirely."
     `(rainbow-delimiters-depth-8-face ((,c :foreground ,rainbow-7)))
     `(rainbow-delimiters-depth-9-face ((,c :foreground ,rainbow-8)))
     `(rainbow-delimiters-mismatched-face ((,c :background ,bg-red-intense :foreground ,fg-intense)))
-    `(rainbow-delimiters-unmatched-face ((,c :inherit ,(if alabaster-themes-no-bold
-                                                           '(rainbow-delimiters-mismatched-face)
-                                                         '(bold rainbow-delimiters-mismatched-face)))))
+    `(rainbow-delimiters-unmatched-face
+      ((,c ,@(alabaster-themes--bold) :background ,bg-red-intense :foreground ,fg-intense)))
 
 ;;;; wgrep
     `(wgrep-delete-face ((,c :inherit warning)))

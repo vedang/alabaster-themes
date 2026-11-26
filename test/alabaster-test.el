@@ -118,6 +118,18 @@
             (expect spec :to-be-truthy)
             (expect (plist-get (cdar spec) :inherit) :not :to-equal high))))))
 
+  (describe "Rainbow Delimiters Faces"
+    (it "should not make unmatched delimiters inherit from mismatched ones"
+      (load-theme 'alabaster-themes-dark t :no-enable)
+      (let* ((settings (get 'alabaster-themes-dark 'theme-settings))
+             (entry (seq-find (lambda (setting)
+                               (eq (cadr setting) 'rainbow-delimiters-unmatched-face))
+                             settings))
+             (attrs (cdar (nth 3 entry)))
+             (parents (ensure-list (plist-get attrs :inherit))))
+        (expect attrs :to-be-truthy)
+        (expect parents :not :to-contain 'rainbow-delimiters-mismatched-face))))
+
   (describe "Bold Customization"
     (before-each
       (mapc #'disable-theme custom-enabled-themes))
