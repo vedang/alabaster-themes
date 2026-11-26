@@ -104,6 +104,20 @@
       (expect (facep 'mode-line-inactive) :to-be-truthy)
       (expect (facep 'default) :to-be-truthy)))
 
+  (describe "Gnus Summary Faces"
+    (it "should not make normal faces inherit from high-priority faces"
+      (load-theme 'alabaster-themes-dark t :no-enable)
+      (let ((settings (get 'alabaster-themes-dark 'theme-settings)))
+        ;; Inspect the generated specs: batch displays may not apply them.
+        (dolist (status '(ancient read ticked unread))
+          (let* ((normal (intern (format "gnus-summary-normal-%s" status)))
+                 (high (intern (format "gnus-summary-high-%s" status)))
+                 (spec (nth 3 (seq-find (lambda (setting)
+                                         (eq (cadr setting) normal))
+                                       settings))))
+            (expect spec :to-be-truthy)
+            (expect (plist-get (cdar spec) :inherit) :not :to-equal high))))))
+
   (describe "Bold Customization"
     (before-each
       (mapc #'disable-theme custom-enabled-themes))
