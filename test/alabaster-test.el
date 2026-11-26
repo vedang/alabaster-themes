@@ -99,6 +99,16 @@
       (expect (facep 'error) :to-be-truthy)
       (expect (facep 'warning) :to-be-truthy))
 
+    (it "should define helper faces used as inheritance targets"
+      (dolist (face '(alabaster-themes-heading-1
+                      alabaster-themes-mark-delete
+                      alabaster-themes-mark-select
+                      alabaster-themes-mark-other
+                      alabaster-themes-underline-error
+                      alabaster-themes-underline-info
+                      alabaster-themes-underline-warning))
+        (expect (facep face) :to-be-truthy)))
+
     (it "should define UI faces"
       (expect (facep 'mode-line) :to-be-truthy)
       (expect (facep 'mode-line-inactive) :to-be-truthy)

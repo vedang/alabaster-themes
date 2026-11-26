@@ -51,6 +51,34 @@
   :prefix "alabaster-themes-"
   :tag "Alabaster Themes")
 
+(defface alabaster-themes-heading-1 '((t nil))
+  "Face for level-one headings."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-delete '((t nil))
+  "Face for items marked for deletion."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-select '((t nil))
+  "Face for selected items."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-mark-other '((t nil))
+  "Face for items marked for other actions."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-error '((t nil))
+  "Face for underlining errors."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-info '((t nil))
+  "Face for underlining informational diagnostics."
+  :group 'alabaster-themes)
+
+(defface alabaster-themes-underline-warning '((t nil))
+  "Face for underlining warnings."
+  :group 'alabaster-themes)
+
 (defconst alabaster-themes-light-themes
   '(alabaster-themes-light
     alabaster-themes-light-bg
