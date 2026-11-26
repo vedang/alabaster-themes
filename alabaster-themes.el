@@ -773,8 +773,6 @@ variations entirely."
     `(gnus-summary-low-read ((,c :inherit gnus-summary-high-read :height 0.9)))
     `(gnus-summary-low-ticked ((,c :inherit gnus-summary-high-ticked :height 0.9)))
     `(gnus-summary-low-unread ((,c :inherit gnus-summary-high-unread :height 0.9)))
-    ;; Gnus's default high-priority faces inherit from the normal ones.
-    ;; Keep the normal styles independent to avoid cycles during theme changes.
     `(gnus-summary-normal-ancient ((,c :foreground ,fg-alt)))
     `(gnus-summary-normal-read ((,c :foreground ,fg-dim)))
     `(gnus-summary-normal-ticked ((,c :foreground ,warning)))
